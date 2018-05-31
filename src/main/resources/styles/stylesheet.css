@@ -1,0 +1,80 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25.05.2018, 21:44:43
+    Author     : Baeumli
+*/
+
+.root-pane {
+    -fx-border-width: 0;
+    -fx-background-color: #dddddd;
+}
+
+.top-bar {
+    -fx-background-color: #3c3c3c;
+}
+
+.top-bar-controls {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-background-color: #3c3c3c;
+    -fx-text-fill: #ffffff;
+}
+
+.btn-exit:hover {
+    -fx-background-color: red;
+}
+
+.tool-bar {
+    -fx-background-color: #ffffff;
+}
+
+.menu-bar {
+    -fx-background-color: #3c3c3c;
+    
+}
+
+.menu-bar-buttons {
+    -fx-background-color: #3c3c3c;
+    -fx-background-radius: 0;
+    -fx-text-fill: #ffffff;
+    -fx-border-width: 0;
+}
+
+.menu-bar-buttons:hover {
+    -fx-background-color: #4c4c4c;
+}
+
+
+.top-icons {
+    -fx-fill: #ffffff;
+}
+
+.top-buttons:hover{
+    -fx-background-color: #bbbbbb;
+}
+
+.separators {
+    
+}
+
+.tool-bar-buttons {
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    
+}
+
+.tool-bar-buttons:hover {
+    -fx-background-color: #dddddd;
+}
+
+.preview {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 1;
+    -fx-border-color: #aaaaaa;
+}
