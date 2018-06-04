@@ -9,9 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -19,16 +17,13 @@ import java.util.logging.Logger;
  */
 public class Database {
     
+    private Connection cn = null;
     private static Database instance = null;
     private final String USERNAME = "db_user";
     private final String PASSWORD = "lookatallthesechickens";
     private final String DB_CONNECTION_STRING = "jdbc:mysql://baeumli.internet-box.ch/fra_db"
             //Need to set TimeZone for some weird reason
             + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private Connection cn = null;
-    
-    private Database() {
-    }
 
     public static Database getInstance() {
         if (instance == null) {
@@ -60,7 +55,7 @@ public class Database {
 
     public void addPerson(int personid, String sex, String firstname, String lastname, String email, String phone, String company) {
         try {
-            String sql = "INSERT INTO `person` VALUES (NULL, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO `person` VALUES (?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setInt(1, personid);
             ps.setString(2, sex);
@@ -89,6 +84,5 @@ public class Database {
         } catch (SQLException ex) {
             System.err.println(ex);
         }
-    }
-    
+    }  
 }

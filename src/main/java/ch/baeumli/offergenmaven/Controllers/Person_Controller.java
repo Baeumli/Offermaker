@@ -23,20 +23,13 @@ import ch.baeumli.offergenmaven.Database;
  */
 public class Person_Controller implements Initializable {
 
-    @FXML
-    private Button btnExit;
-    @FXML
-    private ComboBox cboxSex;
-    @FXML
-    private TextField txtFirstname;
-    @FXML
-    private TextField txtLastname;
-    @FXML
-    private TextField txtEmail;
-    @FXML
-    private TextField txtPhone;
-    @FXML
-    private TextField txtCompany;
+    @FXML private Button btnExit;
+    @FXML private ComboBox cboxSex;
+    @FXML private TextField txtFirstname;
+    @FXML private TextField txtLastname;
+    @FXML private TextField txtEmail;
+    @FXML private TextField txtPhone;
+    @FXML private TextField txtCompany;
     
     private String sex;
     private String firstname;
@@ -53,25 +46,25 @@ public class Person_Controller implements Initializable {
     
     @FXML
     void btnCreatePersonClick(ActionEvent event) {
-        sex = cboxSex.getSelectionModel().getSelectedItem().toString();
-        firstname = txtFirstname.getText();
-        lastname = txtLastname.getText();
-        email = txtEmail.getText();
-        phone = txtPhone.getText();
-        company = txtCompany.getText();
-        
-        Database db = Database.getInstance();
-        db.establishConnection();
-        db.addPerson(0, sex, firstname, lastname, email, phone, company);
+
+        if (cboxSex.getSelectionModel().getSelectedItem().toString().equals("") || txtFirstname.getText().equals("") || txtLastname.getText().equals("")) {
+            System.out.println("Empty Fields!");
+        } else {
+            sex = cboxSex.getSelectionModel().getSelectedItem().toString();
+            firstname = txtFirstname.getText();
+            lastname = txtLastname.getText();
+            email = txtEmail.getText();
+            phone = txtPhone.getText();
+            company = txtCompany.getText();
+            Database db = Database.getInstance();
+            db.establishConnection();
+            db.addPerson(0, sex, firstname, lastname, email, phone, company);
+        }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         cboxSex.getItems().addAll("M", "F");
-    }    
-    
-    
-    
-    
+    }       
 }

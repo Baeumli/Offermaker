@@ -78,3 +78,37 @@ and open the template in the editor.
     -fx-border-width: 1;
     -fx-border-color: #aaaaaa;
 }
+
+.window-separator {
+    -fx-background-color: #EEEEEE;
+    
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dddddd;
+}
+
+.btn-controls {
+    -fx-border-color: transparent;
+    -fx-background-color: #303f9f;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 5;
+}
+
+.btn-controls:hover {
+    -fx-background-color: #3f51b5
+}
+
+.btn-controls:pressed {
+    -fx-background-color: #283592;
+}
+
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dddddd;
+}
+
+.btn-edit-table {
+    -fx-background-radius: 25;
+}
