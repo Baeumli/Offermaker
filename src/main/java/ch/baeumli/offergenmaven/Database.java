@@ -7,6 +7,7 @@ package ch.baeumli.offergenmaven;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -55,14 +56,39 @@ public class Database {
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         } 
+    } 
+
+    public void addPerson(int personid, String sex, String firstname, String lastname, String email, String phone, String company) {
+        try {
+            String sql = "INSERT INTO `person` VALUES (NULL, ?, ?, ?, ?, ?);";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, personid);
+            ps.setString(2, sex);
+            ps.setString(3, firstname);
+            ps.setString(4, lastname);
+            ps.setString(5, email);
+            ps.setString(6, phone);
+            ps.setString(7, company);
+            
+            ps.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+        public void addProduct(int productid, String brand, String name, int price) {
+        try {
+            String sql = "INSERT INTO `product` VALUES (NULL, ?, ?, ?, ?, ?);";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, productid);
+            ps.setString(2, brand);
+            ps.setString(3, name);
+            ps.setInt(4, price);
+            
+            ps.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
     }
     
-    public void insertInto(String table, String values) {
-        try {
-            Statement st = cn.createStatement();
-            st.executeUpdate("INSERT INTO " + table + " VALUES (" + values + ");");
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }  
 }

@@ -62,7 +62,7 @@ public class Person_Controller implements Initializable {
         
         Database db = Database.getInstance();
         db.establishConnection();
-        db.insertInto("person", "null, " + "'" + sex + "', '" + firstname + "', '" + lastname + "', '" + email + "', '" + phone + "', '" + company + "'");
+        db.addPerson(0, sex, firstname, lastname, email, phone, company);
     }
     
     @Override
