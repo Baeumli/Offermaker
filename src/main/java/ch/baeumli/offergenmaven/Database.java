@@ -32,12 +32,14 @@ public class Database {
         return instance;
     }
     
+    //Exception when connection timeout
     public Connection establishConnection() {
         if (cn == null) {
 
             try {
-                cn = DriverManager.getConnection(DB_CONNECTION_STRING, USERNAME, PASSWORD);
+                cn = DriverManager.getConnection(DB_CONNECTION_STRING, USERNAME, PASSWORD);                
             } catch (SQLException ex) {
+                System.out.println("Something went wrong while trying to establish a connection to the database.");
                 java.util.logging.Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -53,6 +55,8 @@ public class Database {
         } 
     } 
 
+    
+    //ID gets auto-incremented by the database
     public void addPerson(int personid, String sex, String firstname, String lastname, String email, String phone, String company) {
         try {
             String sql = "INSERT INTO `person` VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -71,6 +75,7 @@ public class Database {
         }
     }
 
+    
         public void addProduct(int productid, String brand, String name, int price) {
         try {
             String sql = "INSERT INTO `product` VALUES (NULL, ?, ?, ?, ?, ?);";
