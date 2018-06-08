@@ -35,7 +35,7 @@ public class Product_Controller implements Initializable {
 
     private String brand;
     private String name;
-    private int price;
+    private double price;
     private int amount;
 
     void btnExitClick(ActionEvent event) {
@@ -48,11 +48,11 @@ public class Product_Controller implements Initializable {
         
         brand = txtBrand.getText();
         name = txtProduct.getText();
-        price = Integer.parseInt(txtPrice.getText());
+        price = Double.parseDouble(txtPrice.getText());
         
         Database db = Database.getInstance();
         db.establishConnection();
-        db.addProduct(0, brand, name, price);
+        db.addProduct(brand, name, price);
     }
     
     @Override

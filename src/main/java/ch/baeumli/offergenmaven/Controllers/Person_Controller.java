@@ -58,7 +58,7 @@ public class Person_Controller implements Initializable {
             company = txtCompany.getText();
             Database db = Database.getInstance();
             db.establishConnection();
-            db.addPerson(0, sex, firstname, lastname, email, phone, company);
+            db.addPerson(sex, firstname, lastname, email, phone, company);
         }
     }
     

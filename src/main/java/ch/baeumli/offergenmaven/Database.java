@@ -55,19 +55,19 @@ public class Database {
         } 
     } 
 
+    //Adds Data to database
     
     //ID gets auto-incremented by the database
-    public void addPerson(int personid, String sex, String firstname, String lastname, String email, String phone, String company) {
+    public void addPerson(String sex, String firstname, String lastname, String email, String phone, String company) {
         try {
-            String sql = "INSERT INTO `person` VALUES (?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO `person` VALUES (?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setInt(1, personid);
-            ps.setString(2, sex);
-            ps.setString(3, firstname);
-            ps.setString(4, lastname);
-            ps.setString(5, email);
-            ps.setString(6, phone);
-            ps.setString(7, company);
+            ps.setString(1, sex);
+            ps.setString(2, firstname);
+            ps.setString(3, lastname);
+            ps.setString(4, email);
+            ps.setString(5, phone);
+            ps.setString(6, company);
             
             ps.execute();
         } catch (SQLException ex) {
@@ -76,18 +76,21 @@ public class Database {
     }
 
     
-        public void addProduct(int productid, String brand, String name, int price) {
+        public void addProduct(String brand, String name, double price) {
         try {
-            String sql = "INSERT INTO `product` VALUES (NULL, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO `product` VALUES (NULL, ?, ?, ?, ?);";
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setInt(1, productid);
-            ps.setString(2, brand);
-            ps.setString(3, name);
-            ps.setInt(4, price);
+            ps.setString(1, brand);
+            ps.setString(2, name);
+            ps.setDouble(3, price);
             
             ps.execute();
         } catch (SQLException ex) {
             System.err.println(ex);
         }
     }  
+        
+    //Gets data from database
+        
+        
 }
