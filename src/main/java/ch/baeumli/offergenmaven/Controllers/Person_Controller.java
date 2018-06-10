@@ -15,6 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ch.baeumli.offergenmaven.Database;
+import ch.baeumli.offergenmaven.Person;
+import java.util.ArrayList;
 
 /**
  * FXML Controller class
@@ -30,20 +32,21 @@ public class Person_Controller implements Initializable {
     @FXML private TextField txtEmail;
     @FXML private TextField txtPhone;
     @FXML private TextField txtCompany;
-    
+
     private String sex;
     private String firstname;
     private String lastname;
     private String email;
     private String phone;
     private String company;
+    private ArrayList<Person> persons;
 
     @FXML
     void btnExitClick(ActionEvent event) {
-    Stage stage = (Stage) btnExit.getScene().getWindow();
-    stage.close();
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
     }
-    
+
     @FXML
     void btnCreatePersonClick(ActionEvent event) {
 
@@ -62,9 +65,18 @@ public class Person_Controller implements Initializable {
         }
     }
     
+    private void fill(){
+        //Fill Tableview with data
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        persons = new ArrayList<Person>();
         cboxSex.getItems().addAll("M", "F");
-    }       
+        Database db = Database.getInstance();
+        db.establishConnection();
+        persons = db.getPersons();
+        this.fill();
+    }
 }

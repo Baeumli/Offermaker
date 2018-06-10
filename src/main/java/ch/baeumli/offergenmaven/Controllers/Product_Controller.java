@@ -15,6 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ch.baeumli.offergenmaven.Database;
+import ch.baeumli.offergenmaven.Product;
+import java.util.ArrayList;
 
 /**
  * FXML Controller class
@@ -22,21 +24,17 @@ import ch.baeumli.offergenmaven.Database;
  * @author Baeumli
  */
 public class Product_Controller implements Initializable {
-    @FXML
-    private Button btnExit;   
-    @FXML
-    private TextField txtBrand;
-    @FXML
-    private TextField txtProduct;
-    @FXML
-    private TextField txtPrice;
-    @FXML
-    private TextField txtAmount;
+    @FXML private Button btnExit;   
+    @FXML private TextField txtBrand;
+    @FXML private TextField txtProduct;
+    @FXML private TextField txtPrice;
+    @FXML private TextField txtAmount;
 
     private String brand;
     private String name;
     private double price;
     private int amount;
+    private ArrayList<Product> products;
 
     void btnExitClick(ActionEvent event) {
     Stage stage = (Stage) btnExit.getScene().getWindow();
@@ -55,9 +53,18 @@ public class Product_Controller implements Initializable {
         db.addProduct(brand, name, price);
     }
     
+    private void fill(){
+        //Fill Tableview with product data
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        products = new ArrayList<Product>();
+        Database db = Database.getInstance();
+        db.establishConnection();
+        db.getProducts();
+        this.fill();
     }    
     
     

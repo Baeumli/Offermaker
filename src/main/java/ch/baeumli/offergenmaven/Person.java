@@ -11,14 +11,16 @@ package ch.baeumli.offergenmaven;
  */
 public class Person {
     private String sex, firstname, lastname, email, phone, company;
+    private int id;
     
-    public Person(String sex, String firstname, String lastname, String email, String phone, String company){
+    public Person(String sex, String firstname, String lastname, String email, String phone, String company, int id){
         this.sex = sex;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phone = phone;
         this.company = company;
+        this.id = id;
     }
 
     public String getSex() {
@@ -43,6 +45,10 @@ public class Person {
 
     public String getCompany() {
         return company;
+    }
+    
+    public int getId(){
+        return id;
     }
     
 }

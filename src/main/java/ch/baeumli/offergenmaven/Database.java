@@ -23,7 +23,7 @@ public class Database {
     private static Database instance = null;
     private final String USERNAME = "db_user";
     private final String PASSWORD = "lookatallthesechickens";
-    private final String DB_CONNECTION_STRING = "jdbc:mysql://baeumli.internet-box.ch/fra_db"
+    private final String DB_CONNECTION_STRING = "jdbc:mysql://eggenberg.mynetgear.com/franz_db"
             //Need to set TimeZone for some weird reason
             + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
@@ -121,7 +121,7 @@ public class Database {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                person = new Person(rs.getString("sex"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getString("phone"), rs.getString("company"));
+                person = new Person(rs.getString("sex"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getString("phone"), rs.getString("company"), rs.getInt("person_id"));
                 persons.add(person);
             }
             return persons;
@@ -139,7 +139,7 @@ public class Database {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                product = new Product(rs.getString("brand"), rs.getString("name"), rs.getDouble("price"));
+                product = new Product(rs.getString("brand"), rs.getString("name"), rs.getDouble("price"), rs.getInt("product_id"));
                 products.add(product);
             }
             return products;

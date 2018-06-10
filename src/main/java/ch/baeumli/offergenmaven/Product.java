@@ -12,11 +12,13 @@ package ch.baeumli.offergenmaven;
 public class Product {
     private String brand, name;
     private double price;
+    private int id;
     
-    public Product(String brand, String name, double price){
+    public Product(String brand, String name, double price, int id){
         this.brand = brand;
         this.name = name;
         this.price = price;
+        this.id = id;
     }
 
     public String getBrand() {
@@ -31,4 +33,7 @@ public class Product {
         return price;
     }
     
+    public int getId(){
+        return id;
+    }
 }
