@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
@@ -89,35 +90,59 @@ public class Database {
         }
     }
 
-    //Gets data from database
-    public Person getPerson(int id) {
-        Person person;
+    //Removes data from database
+    public void removePerson(int id) {
         try {
-            String sql = "SELECT * FROM `person` WHERE person_id = ?";
+            String sql = "DELETE FROM `person` WHERE person_id = ?";
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setInt(1, id);
-            
+        } catch (SQLException ex) {
+            System.out.println("Failed to delete person");
+        }
+    }
+
+    public void removeProduct(int id) {
+        try {
+            String sql = "DELETE FROM `product` WHERE product_id = ?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+        } catch (SQLException ex) {
+            System.out.println("Failed to delete product");
+        }
+    }
+
+    //Gets data from database
+    public ArrayList<Person> getPersons() {
+        Person person;
+        ArrayList<Person> persons = new ArrayList<Person>();
+        try {
+            String sql = "SELECT * FROM `person`";
+            PreparedStatement ps = cn.prepareStatement(sql);
+
             ResultSet rs = ps.executeQuery();
-            person = new Person(rs.getString("sex"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getString("phone"), rs.getString("company"));
-            
-            return person;
+            while (rs.next()) {
+                person = new Person(rs.getString("sex"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getString("phone"), rs.getString("company"));
+                persons.add(person);
+            }
+            return persons;
         } catch (SQLException ex) {
             return null;
         }
     }
 
-
-    public Product getProduct(int id) {
+    public ArrayList<Product> getProducts() {
         Product product;
+        ArrayList<Product> products = new ArrayList<Product>();
         try {
-            String sql = "SELECT * FROM `product` WHERE product_id = ?";
+            String sql = "SELECT * FROM `product`";
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setInt(1, id);
-            
+
             ResultSet rs = ps.executeQuery();
-            product = new Product(rs.getString("brand"), rs.getString("name"), rs.getDouble("price"));
-            
-            return product;
+            while (rs.next()) {
+                product = new Product(rs.getString("brand"), rs.getString("name"), rs.getDouble("price"));
+                products.add(product);
+            }
+            return products;
         } catch (SQLException ex) {
             return null;
         }
