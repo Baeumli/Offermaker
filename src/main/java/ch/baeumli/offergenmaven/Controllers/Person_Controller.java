@@ -30,7 +30,7 @@ import javafx.scene.layout.AnchorPane;
 public class Person_Controller implements Initializable {
     
     @FXML private ComboBox cboxSex;
-    private Button btnExit;
+    @FXML private Button btnExit;
     @FXML private TextField txtFirstname;
     @FXML private TextField txtLastname;
     @FXML private TextField txtEmail;
