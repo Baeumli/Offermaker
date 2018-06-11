@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import ch.baeumli.offergenmaven.Database;
 import ch.baeumli.offergenmaven.Product;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * FXML Controller class
@@ -34,7 +36,7 @@ public class Product_Controller implements Initializable {
     private String name;
     private double price;
     private int amount;
-    private ArrayList<Product> products;
+    private ObservableList<Product> persons = FXCollections.observableArrayList();
 
     void btnExitClick(ActionEvent event) {
     Stage stage = (Stage) btnExit.getScene().getWindow();
@@ -60,7 +62,6 @@ public class Product_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        products = new ArrayList<Product>();
         Database db = Database.getInstance();
         db.establishConnection();
         db.getProducts();

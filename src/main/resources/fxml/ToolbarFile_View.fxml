@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="108.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@../../styles/stylesheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ch.baeumli.offergenmaven.Controllers.ToolbarFile_Controller">
+<AnchorPane prefHeight="108.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.ToolbarFile_Controller">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="59.0" layoutY="4.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="97.0" prefWidth="111.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" layoutX="24.0" layoutY="75.0" prefHeight="17.0" prefWidth="50.0" text="Anrede" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Label alignment="CENTER" layoutX="24.0" layoutY="75.0" prefHeight="17.0" prefWidth="50.0" text="Person" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                   <Button layoutX="4.0" layoutY="4.0" mnemonicParsing="false" onAction="#btnPersonClick" prefHeight="74.0" prefWidth="155.0" styleClass="tool-bar-buttons" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/icon_person.png" />
+                              <Image url="@../assets/icon_person.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -38,7 +38,7 @@
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/icon_calendar%20.png" />
+                              <Image url="@../assets/icon_calendar%20.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -57,7 +57,7 @@
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/icon_product.png" />
+                              <Image url="@../assets/icon_product.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -76,7 +76,7 @@
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/icon_discount.png" />
+                              <Image url="@../assets/icon_discount.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -95,7 +95,7 @@
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/icon_payment.png" />
+                              <Image url="@../assets/icon_payment.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -114,7 +114,7 @@
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/icon_shipment.png" />
+                              <Image url="@../assets/icon_shipment.png" />
                            </image>
                         </ImageView>
                      </graphic>

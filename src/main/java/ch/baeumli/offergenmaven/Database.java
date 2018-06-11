@@ -10,8 +10,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -112,9 +113,9 @@ public class Database {
     }
 
     //Gets data from database
-    public ArrayList<Person> getPersons() {
+    public ObservableList<Person> getPersons() {
         Person person;
-        ArrayList<Person> persons = new ArrayList<Person>();
+        ObservableList<Person> persons = FXCollections.observableArrayList();
         try {
             String sql = "SELECT * FROM `person`";
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -132,9 +133,9 @@ public class Database {
         }
     }
 
-    public ArrayList<Product> getProducts() {
+    public ObservableList<Product> getProducts() {
         Product product;
-        ArrayList<Product> products = new ArrayList<Product>();
+        ObservableList<Product> products = FXCollections.observableArrayList();
         try {
             String sql = "SELECT * FROM `product`";
             PreparedStatement ps = cn.prepareStatement(sql);

@@ -16,8 +16,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ch.baeumli.offergenmaven.Database;
 import ch.baeumli.offergenmaven.Person;
-import java.util.ArrayList;
-import java.util.Arrays;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -25,23 +28,30 @@ import java.util.Arrays;
  * @author Baeumli
  */
 public class Person_Controller implements Initializable {
+    
     @FXML private ComboBox cboxSex;
-    @FXML private Button btnExit;
+    private Button btnExit;
     @FXML private TextField txtFirstname;
     @FXML private TextField txtLastname;
     @FXML private TextField txtEmail;
     @FXML private TextField txtPhone;
     @FXML private TextField txtCompany;
-
+    @FXML private AnchorPane panePerson;
+    @FXML private TableView<?> tblPerson;
+    @FXML private TableColumn<Person, String> colSex;
+    @FXML private TableColumn<Person, String> colFirstname;
+    @FXML private TableColumn<Person, String> colLastname;
+    @FXML private Button btnCreatePerson;
+    
     private String sex;
     private String firstname;
     private String lastname;
     private String email;
     private String phone;
     private String company;
-    private ArrayList<Person> persons;
+    private ObservableList<Person> persons = FXCollections.observableArrayList();
 
-    @FXML
+
     void btnExitClick(ActionEvent event) {
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
@@ -73,7 +83,6 @@ public class Person_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        persons = new ArrayList<>();
         cboxSex.getItems().addAll('m', 'f');
         Database db = Database.getInstance();
         db.establishConnection();
