@@ -22,42 +22,30 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-
 /**
  *
  * @author lbaum
  */
 public class Main_Controller implements Initializable {
     
-    @FXML
-    private Button button;
-    @FXML
-    private AnchorPane toolbarPane; 
-    @FXML
-    private Button btnMinimize;
-    @FXML
-    private Button btnExit;
-    @FXML
-    private Button btnMaximize;
-    @FXML
-    private ToggleButton menuFile;
-    @FXML
-    private ToggleButton menuOptions;
-    @FXML
-    private ToggleButton menuSend;
-    @FXML
-    private TextArea txtPreview;
+    @FXML private Button button;
+    @FXML private AnchorPane toolbarPane; 
+    @FXML private Button btnMinimize;
+    @FXML private Button btnExit;
+    @FXML private Button btnMaximize;
+    @FXML private ToggleButton menuFile;
+    @FXML private ToggleButton menuOptions;
+    @FXML private ToggleButton menuSend;
+    @FXML private TextArea txtPreview;
 
-    
-    
     @FXML
-    void btnExitClick(ActionEvent event) {
+    public void btnExitClick(ActionEvent event) {
         Platform.exit();
         System.exit(0);
     }
 
     @FXML
-    void btnMaximizeClick(ActionEvent event) {
+    public void btnMaximizeClick(ActionEvent event) {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         if (stage.isMaximized()) {
             stage.setMaximized(false);
@@ -67,13 +55,13 @@ public class Main_Controller implements Initializable {
     }
 
     @FXML
-    void btnMinimizeClick(ActionEvent event) {
+    public void btnMinimizeClick(ActionEvent event) {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
     
     @FXML
-    void menuFileClick(ActionEvent event) {
+    public void menuFileClick(ActionEvent event) {
         try {
             AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarFile_View.fxml")); 
             toolbarPane.getChildren().add(newLoadedPane);
@@ -90,7 +78,7 @@ public class Main_Controller implements Initializable {
     }
     
     @FXML
-    void menuOptionsClick(ActionEvent event) {
+    public void menuOptionsClick(ActionEvent event) {
         try {
             AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarOptions_View.fxml")); 
             toolbarPane.getChildren().add(newLoadedPane);
@@ -108,7 +96,7 @@ public class Main_Controller implements Initializable {
     
     
     @FXML
-    void menuSendClick(ActionEvent event) {
+    public void menuSendClick(ActionEvent event) {
         try {
             AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarSend_View.fxml"));
             toolbarPane.getChildren().add(newLoadedPane);
@@ -124,7 +112,6 @@ public class Main_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) { 
-        
         
         Database db = Database.getInstance();
         if (db.establishConnection() != null) {

@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import ch.baeumli.offergenmaven.Database;
 import ch.baeumli.offergenmaven.Person;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * FXML Controller class
@@ -24,9 +25,8 @@ import java.util.ArrayList;
  * @author Baeumli
  */
 public class Person_Controller implements Initializable {
-
-    @FXML private Button btnExit;
     @FXML private ComboBox cboxSex;
+    @FXML private Button btnExit;
     @FXML private TextField txtFirstname;
     @FXML private TextField txtLastname;
     @FXML private TextField txtEmail;
@@ -62,6 +62,7 @@ public class Person_Controller implements Initializable {
             Database db = Database.getInstance();
             db.establishConnection();
             db.addPerson(sex, firstname, lastname, email, phone, company);
+            db.closeConnection();
         }
     }
     
@@ -72,11 +73,16 @@ public class Person_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        persons = new ArrayList<Person>();
-        cboxSex.getItems().addAll("M", "F");
+        persons = new ArrayList<>();
+        cboxSex.getItems().addAll('m', 'f');
         Database db = Database.getInstance();
         db.establishConnection();
         persons = db.getPersons();
+        db.closeConnection();
         this.fill();
+        for (int i = 0; i < persons.size(); i++) {
+            System.out.println(persons.get(i).toString());
+        }
     }
+    
 }

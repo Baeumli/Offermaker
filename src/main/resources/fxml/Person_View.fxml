@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="867.0" styleClass="mainFxmlClass" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.Person_Controller">
+<AnchorPane id="AnchorPane" fx:id="panePerson" prefHeight="565.0" prefWidth="867.0" styleClass="mainFxmlClass" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.Person_Controller">
    <children>
       <BorderPane prefHeight="565.0" prefWidth="867.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -136,7 +136,7 @@
                         <TextField fx:id="txtPhone" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField fx:id="txtCompany" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label text="First name:" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="cboxSex" prefHeight="25.0" prefWidth="59.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cboxSex" focusTraversable="false" prefHeight="27.0" prefWidth="98.0" GridPane.columnIndex="1" />
                         <Label text="Gender:" />
                         <Label text="Last name:" GridPane.rowIndex="2" />
                         <Label text="Phone:" GridPane.rowIndex="4" />
@@ -149,7 +149,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnCreatePerson" layoutX="447.0" layoutY="524.0" mnemonicParsing="false" onAction="#btnCreatePersonClick" styleClass="btn-controls" text="Add Person" />
+                  <Button fx:id="btnCreatePerson" layoutX="447.0" layoutY="524.0" mnemonicParsing="false" onAction="#btnCreatePersonClick" styleClass="btn-controls" text="Add Person" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                </children>
             </AnchorPane>
          </right>

@@ -37,7 +37,6 @@ public class Database {
     //Exception when connection timeout
     public Connection establishConnection() {
         if (cn == null) {
-
             try {
                 cn = DriverManager.getConnection(DB_CONNECTION_STRING, USERNAME, PASSWORD);
             } catch (SQLException ex) {
@@ -61,18 +60,18 @@ public class Database {
     //ID gets auto-incremented by the database
     public void addPerson(String sex, String firstname, String lastname, String email, String phone, String company) {
         try {
-            String sql = "INSERT INTO `person` VALUES (?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO `person` VALUES (NULL, ?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, sex);
+            ps.setString(1, lastname);
             ps.setString(2, firstname);
-            ps.setString(3, lastname);
+            ps.setString(3, sex);
             ps.setString(4, email);
             ps.setString(5, phone);
             ps.setString(6, company);
-
             ps.execute();
         } catch (SQLException ex) {
             System.err.println("Failed to add person");
+            ex.printStackTrace();
         }
     }
 
@@ -83,7 +82,6 @@ public class Database {
             ps.setString(1, brand);
             ps.setString(2, name);
             ps.setDouble(3, price);
-
             ps.execute();
         } catch (SQLException ex) {
             System.err.println("Failed to add product");
@@ -98,6 +96,7 @@ public class Database {
             ps.setInt(1, id);
         } catch (SQLException ex) {
             System.out.println("Failed to delete person");
+            ex.printStackTrace();
         }
     }
 
@@ -108,6 +107,7 @@ public class Database {
             ps.setInt(1, id);
         } catch (SQLException ex) {
             System.out.println("Failed to delete product");
+            ex.printStackTrace();
         }
     }
 
@@ -126,7 +126,9 @@ public class Database {
             }
             return persons;
         } catch (SQLException ex) {
+            ex.printStackTrace();
             return null;
+
         }
     }
 
@@ -144,6 +146,7 @@ public class Database {
             }
             return products;
         } catch (SQLException ex) {
+            ex.printStackTrace();
             return null;
         }
     }
