@@ -38,9 +38,12 @@ and open the template in the editor.
     
 }
 
+
+
 .menu-bar-buttons {
     -fx-background-color: #3c3c3c;
     -fx-background-radius: 0;
+    -fx-border-color: transparent;
     -fx-text-fill: #ffffff;
     -fx-border-width: 0;
 }
@@ -49,6 +52,10 @@ and open the template in the editor.
     -fx-background-color: #4c4c4c;
 }
 
+.menu-bar-buttons:selected {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #3c3c3c;
+}
 
 .top-icons {
     -fx-fill: #ffffff;

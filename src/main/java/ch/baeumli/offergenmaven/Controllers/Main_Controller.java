@@ -67,14 +67,7 @@ public class Main_Controller implements Initializable {
             toolbarPane.getChildren().add(newLoadedPane);
         } catch (IOException ex) {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-        if (menuFile.isSelected()) {
-            menuOptions.setStyle("-fx-background-color: #3c3c3c; -fx-text-fill: #ffffff;");
-            menuSend.setStyle("-fx-background-color: #3c3c3c; -fx-text-fill: #ffffff;");
-            menuFile.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #3c3c3c;");
-        }
-        
+        }               
     }
     
     @FXML
@@ -85,16 +78,8 @@ public class Main_Controller implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        
-        if (menuOptions.isSelected()) {
-            menuFile.setStyle("-fx-background-color: #3c3c3c; -fx-text-fill: #ffffff;");
-            menuSend.setStyle("-fx-background-color: #3c3c3c; -fx-text-fill: #ffffff;");
-            menuOptions.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #3c3c3c;");
-        }
     }
 
-    
-    
     @FXML
     public void menuSendClick(ActionEvent event) {
         try {
@@ -103,21 +88,18 @@ public class Main_Controller implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (menuSend.isSelected()) {
-            menuFile.setStyle("-fx-background-color: #3c3c3c; -fx-text-fill: #ffffff;");
-            menuOptions.setStyle("-fx-background-color: #3c3c3c; -fx-text-fill: #ffffff;");
-            menuSend.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #3c3c3c;");
-        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) { 
         
+        menuFile.fire();
+        
         Database db = Database.getInstance();
         if (db.establishConnection() != null) {
             System.out.println("Successfully connected to db");
         }
-  
+
         txtPreview.setText("Monsieur, Nous avons bien reçu votre commande du 30 mai et nous vous en remercions vivement."
                 + "\n" + "\n"
                 + "Nous vous proposons 10 tablettes modèle 0815 au prix de 800 CHF par tablette.\n"
