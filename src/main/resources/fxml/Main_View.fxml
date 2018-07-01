@@ -5,7 +5,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" styleClass="root-pane" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.Main_Controller">
+<AnchorPane id="AnchorPane" fx:id="paneMain" prefHeight="800.0" prefWidth="1000.0" styleClass="root-pane" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.Main_Controller">
     <children>
       <AnchorPane prefHeight="60.0" prefWidth="1000.0" styleClass="top-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -21,7 +20,7 @@
                <children>
                   <HBox prefHeight="35.0" prefWidth="1000.0">
                      <children>
-                        <ToolBar fx:id="tbarMain" focusTraversable="false" opacity="0.0" prefHeight="30.0" prefWidth="889.0" />
+                        <AnchorPane fx:id="paneTop" onMouseDragged="#paneTopDragged" onMousePressed="#paneTopPressed" prefHeight="34.0" prefWidth="901.0" />
                         <Button fx:id="btnMinimize" mnemonicParsing="false" onAction="#btnMinimizeClick" prefHeight="30.0" prefWidth="40.0">
                            <styleClass>
                               <String fx:value="top-bar-controls" />
@@ -70,8 +69,8 @@
                               <ToggleGroup fx:id="menuGroup" />
                            </toggleGroup>
                         </ToggleButton>
-                        <ToggleButton fx:id="menuOptions" focusTraversable="false" mnemonicParsing="false" onAction="#menuOptionsClick" prefHeight="11.0" prefWidth="81.0" styleClass="menu-bar-buttons" text="Options" toggleGroup="$menuGroup" />
-                        <ToggleButton fx:id="menuSend" focusTraversable="false" mnemonicParsing="false" onAction="#menuSendClick" prefHeight="15.0" prefWidth="66.0" styleClass="menu-bar-buttons" text="Send" toggleGroup="$menuGroup" />
+                        <ToggleButton fx:id="menuOptions" focusTraversable="false" mnemonicParsing="false" onAction="#menuOptionsClick" prefHeight="25.0" prefWidth="60.0" styleClass="menu-bar-buttons" text="Options" toggleGroup="$menuGroup" />
+                        <ToggleButton fx:id="menuSend" focusTraversable="false" mnemonicParsing="false" onAction="#menuSendClick" prefHeight="25.0" prefWidth="49.0" styleClass="menu-bar-buttons" text="Send" toggleGroup="$menuGroup" />
                      </children>
                   </HBox>
                </children>

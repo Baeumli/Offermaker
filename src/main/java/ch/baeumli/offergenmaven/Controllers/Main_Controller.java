@@ -19,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,8 +30,8 @@ import javafx.stage.Stage;
  */
 public class Main_Controller implements Initializable {
     
-    @FXML private Button button;
-    @FXML private AnchorPane toolbarPane; 
+    @FXML private AnchorPane toolbarPane;
+    @FXML private AnchorPane paneMain;
     @FXML private Button btnMinimize;
     @FXML private Button btnExit;
     @FXML private Button btnMaximize;
@@ -37,7 +39,14 @@ public class Main_Controller implements Initializable {
     @FXML private ToggleButton menuOptions;
     @FXML private ToggleButton menuSend;
     @FXML private TextArea txtPreview;
+    @FXML private AnchorPane paneTop;
+    @FXML private ToggleGroup menuGroup;
+    @FXML private AnchorPane previewPane;
 
+    private static double xOffset;
+    private static double yOffset;
+    
+    
     @FXML
     public void btnExitClick(ActionEvent event) {
         Platform.exit();
@@ -89,7 +98,22 @@ public class Main_Controller implements Initializable {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    @FXML
+    public void paneTopDragged(MouseEvent event) {
+        Stage stage = (Stage) paneMain.getScene().getWindow();
+        
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
 
+    }
+
+    @FXML
+    public void paneTopPressed(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) { 
         
@@ -108,5 +132,9 @@ public class Main_Controller implements Initializable {
                 + "Nous allons faire la livraison par camion après la réception de votre paiement."
                 + "\n" + "\n"
                 + "En vous remerciant d'avance de votre commande, nous vous prions d'agréer, Monsieur, nos distinguées.");   
-    }      
+    }    
+    
+    
+
+    
 }
