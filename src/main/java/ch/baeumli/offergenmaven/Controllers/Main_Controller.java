@@ -110,4 +110,3 @@ public class Main_Controller implements Initializable {
                 + "En vous remerciant d'avance de votre commande, nous vous prions d'agréer, Monsieur, nos distinguées.");   
     }      
 }
-
