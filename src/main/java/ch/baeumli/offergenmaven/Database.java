@@ -25,7 +25,7 @@ public class Database {
     private final String USERNAME = "db_user";
     private final String PASSWORD = "lookatallthesechickens";
     private final String DB_CONNECTION_STRING = "jdbc:mysql://eggenberg.mynetgear.com/franz_db"
-            //Need to set TimeZone for some weird reason
+            //JDBC requires timezone for some weird reason
             + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     public static Database getInstance() {

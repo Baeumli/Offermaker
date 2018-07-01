@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" styleClass="root-pane" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.Main_Controller">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" styleClass="root-pane" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.Main_Controller">
     <children>
       <AnchorPane prefHeight="60.0" prefWidth="1000.0" styleClass="upper-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="73.0" prefHeight="200.0" prefWidth="927.0" styleClass="top-bar" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ToolBar focusTraversable="false" layoutX="75.0" opacity="0.0" prefHeight="30.0" prefWidth="805.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0" />
+                  <ToolBar fx:id="tbarMain" focusTraversable="false" layoutX="75.0" opacity="0.0" prefHeight="30.0" prefWidth="805.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0" />
                   <Button fx:id="btnMinimize" mnemonicParsing="false" onAction="#btnMinimizeClick" prefHeight="30.0" prefWidth="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
                      <styleClass>
                         <String fx:value="top-bar-controls" />

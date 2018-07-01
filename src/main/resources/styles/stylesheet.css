@@ -112,3 +112,23 @@ and open the template in the editor.
 .btn-edit-table {
     -fx-background-radius: 25;
 }
+
+
+.btn-login {
+    -fx-background-color: #04a8f8;
+    -fx-text-fill: #ffffff;
+    
+}
+
+.btn-login:hover {
+   -fx-background-color: #0397df;
+
+}
+
+.btn-login:pressed {
+    -fx-background-color: #0386c6;
+}
+
+.login-pane {
+    
+}

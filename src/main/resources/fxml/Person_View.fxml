@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="panePerson" prefHeight="565.0" prefWidth="867.0" styleClass="mainFxmlClass" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.Person_Controller">
+<AnchorPane id="AnchorPane" fx:id="panePerson" prefHeight="565.0" prefWidth="867.0" styleClass="mainFxmlClass" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.Person_Controller">
    <children>
       <BorderPane prefHeight="565.0" prefWidth="867.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -35,7 +35,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <HBox layoutX="220.0" layoutY="78.0" prefHeight="30.0" prefWidth="85.0" spacing="5.0">
+                              <HBox layoutX="382.0" layoutY="79.0" prefHeight="30.0" prefWidth="85.0" spacing="5.0">
                                  <children>
                                     <Button alignment="CENTER" ellipsisString="" focusTraversable="false" mnemonicParsing="false" pickOnBounds="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn-edit-table">
                                        <font>
@@ -147,7 +147,7 @@
                         <Label text="Company:" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
-                  <Label layoutX="112.0" layoutY="14.0" prefHeight="17.0" prefWidth="284.0" text="Add a new Person:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="14.0">
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="284.0" text="Add a new Person:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                      <font>
                         <Font size="15.0" />
                      </font>

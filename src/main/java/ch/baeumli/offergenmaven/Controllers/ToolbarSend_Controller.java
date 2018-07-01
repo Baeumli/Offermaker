@@ -7,16 +7,9 @@ package ch.baeumli.offergenmaven.Controllers;
 
 import ch.baeumli.offergenmaven.PDF;
 import java.awt.Desktop;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,6 +59,4 @@ public class ToolbarSend_Controller implements Initializable {
         PDF pdf = new PDF();
         pdf.createPdf();
     }
-
-
 }

@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -39,7 +40,9 @@ public class ToolbarFile_Controller implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Person_View.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+            stage.initStyle(StageStyle.UTILITY);
             stage.setTitle("Add a new Person");
+            stage.setResizable(false);
             stage.setScene(new Scene(root1));
             stage.showAndWait();
             

@@ -83,7 +83,8 @@ public class Person_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        cboxSex.getItems().addAll('m', 'f');
+        
+        cboxSex.getItems().addAll('M', 'F');
         Database db = Database.getInstance();
         db.establishConnection();
         persons = db.getPersons();
