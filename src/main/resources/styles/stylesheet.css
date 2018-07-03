@@ -17,7 +17,7 @@ and open the template in the editor.
     -fx-background-color: #3c3c3c;
 }
 
-.top-bar-controls {
+.btn-window-control {
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     -fx-border-width: 0;
@@ -25,8 +25,13 @@ and open the template in the editor.
     -fx-text-fill: #ffffff;
 }
 
+.btn-window-control:hover{
+    -fx-background-color: #5c5c5c;
+}
+
+
 .btn-exit:hover {
-    -fx-background-color: red;
+    -fx-background-color: #cd1a2b;
 }
 
 .tool-bar {
@@ -61,12 +66,10 @@ and open the template in the editor.
     -fx-fill: #ffffff;
 }
 
-.top-buttons:hover{
-    -fx-background-color: #bbbbbb;
-}
 
-.separators {
-    
+
+.separator {
+    -fx-background-color: #dddddd;
 }
 
 .tool-bar-buttons {

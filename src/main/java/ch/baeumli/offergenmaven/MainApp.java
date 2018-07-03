@@ -2,20 +2,15 @@ package ch.baeumli.offergenmaven;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
 public class MainApp extends Application {
-
-    private double xOffset = 0;
-    private double yOffset = 0;
        
     @Override
     public void start(final Stage stage) throws Exception {
@@ -23,8 +18,7 @@ public class MainApp extends Application {
            
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/stylesheet.css");
-        scene.setFill(Color.TRANSPARENT);
-        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();

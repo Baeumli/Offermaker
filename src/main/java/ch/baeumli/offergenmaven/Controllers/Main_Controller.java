@@ -46,7 +46,6 @@ public class Main_Controller implements Initializable {
     private static double xOffset;
     private static double yOffset;
     
-    
     @FXML
     public void btnExitClick(ActionEvent event) {
         Platform.exit();
@@ -98,7 +97,6 @@ public class Main_Controller implements Initializable {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     
     @FXML
     public void paneTopDragged(MouseEvent event) {

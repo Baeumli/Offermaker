@@ -2,15 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="108.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.ToolbarFile_Controller">
+<AnchorPane prefHeight="108.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offergenmaven.Controllers.ToolbarFile_Controller">
    <children>
-      <HBox alignment="CENTER_LEFT" layoutX="59.0" layoutY="4.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" layoutX="59.0" layoutY="4.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="97.0" prefWidth="111.0" HBox.hgrow="ALWAYS">
                <children>
@@ -26,11 +26,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="97.0" prefWidth="0.0" HBox.hgrow="NEVER">
-               <children>
-                  <Separator layoutX="110.0" orientation="VERTICAL" prefHeight="97.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <Pane prefHeight="98.0" prefWidth="1.0" styleClass="separator" />
             <AnchorPane prefHeight="97.0" prefWidth="111.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" layoutX="24.0" layoutY="75.0" prefHeight="17.0" prefWidth="50.0" text="Datum" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -45,11 +41,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="97.0" prefWidth="0.0" HBox.hgrow="NEVER">
-               <children>
-                  <Separator layoutX="110.0" orientation="VERTICAL" prefHeight="97.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <Pane prefHeight="98.0" prefWidth="1.0" styleClass="separator" />
             <AnchorPane prefHeight="97.0" prefWidth="111.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" layoutX="24.0" layoutY="75.0" prefHeight="17.0" prefWidth="50.0" text="Produkt" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -64,11 +56,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="97.0" prefWidth="0.0" HBox.hgrow="NEVER">
-               <children>
-                  <Separator layoutX="110.0" orientation="VERTICAL" prefHeight="97.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <Pane prefHeight="98.0" prefWidth="1.0" styleClass="separator" />
             <AnchorPane prefHeight="97.0" prefWidth="111.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" layoutX="24.0" layoutY="75.0" prefHeight="17.0" prefWidth="50.0" text="Rabatt" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -83,11 +71,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="97.0" prefWidth="0.0" HBox.hgrow="NEVER">
-               <children>
-                  <Separator layoutX="110.0" orientation="VERTICAL" prefHeight="97.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <Pane prefHeight="98.0" prefWidth="1.0" styleClass="separator" />
             <AnchorPane prefHeight="97.0" prefWidth="111.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" layoutX="24.0" layoutY="75.0" prefHeight="17.0" prefWidth="50.0" text="Zahlung" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -102,11 +86,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="97.0" prefWidth="0.0" HBox.hgrow="NEVER">
-               <children>
-                  <Separator layoutX="110.0" orientation="VERTICAL" prefHeight="97.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <Pane prefHeight="98.0" prefWidth="1.0" styleClass="separator" />
             <AnchorPane prefHeight="97.0" prefWidth="111.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" layoutX="24.0" layoutY="75.0" prefHeight="17.0" prefWidth="50.0" text="Lieferung" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
