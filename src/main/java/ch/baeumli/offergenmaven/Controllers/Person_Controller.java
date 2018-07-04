@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -30,17 +31,17 @@ import javafx.scene.layout.AnchorPane;
 public class Person_Controller implements Initializable {
     
     @FXML private ComboBox cboxSex;
-    @FXML private Button btnExit;
+    private Button btnExit;
     @FXML private TextField txtFirstname;
     @FXML private TextField txtLastname;
     @FXML private TextField txtEmail;
     @FXML private TextField txtPhone;
     @FXML private TextField txtCompany;
     @FXML private AnchorPane panePerson;
-    @FXML private TableView<?> tblPerson;
-    @FXML private TableColumn<Person, String> colSex;
-    @FXML private TableColumn<Person, String> colFirstname;
-    @FXML private TableColumn<Person, String> colLastname;
+    @FXML private TableView tblPerson;
+    @FXML private TableColumn colSex;
+    @FXML private TableColumn colFirstname;
+    @FXML private TableColumn colLastname;
     @FXML private Button btnCreatePerson;
     
     private String sex;
@@ -50,6 +51,12 @@ public class Person_Controller implements Initializable {
     private String phone;
     private String company;
     private ObservableList<Person> persons = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn colEmail;
+    @FXML
+    private TableColumn colPhone;
+    @FXML
+    private TableColumn colCompany;
 
 
     void btnExitClick(ActionEvent event) {
@@ -72,27 +79,35 @@ public class Person_Controller implements Initializable {
             Database db = Database.getInstance();
             db.establishConnection();
             db.addPerson(sex, firstname, lastname, email, phone, company);
+            persons = db.getPersons();
             db.closeConnection();
+            
+            this.fillTable();
         }
     }
     
-    private void fill(){
+    private void fillTable(){
         //Fill Tableview with data
+        colSex.setCellValueFactory(new PropertyValueFactory("sex"));
+        colFirstname.setCellValueFactory(new PropertyValueFactory("firstname"));
+        colLastname.setCellValueFactory(new PropertyValueFactory("lastname"));
+        colEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        colPhone.setCellValueFactory(new PropertyValueFactory("phone"));
+        colCompany.setCellValueFactory(new PropertyValueFactory("company"));   
+        
+        tblPerson.setItems(persons);
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         cboxSex.getItems().addAll('M', 'F');
         Database db = Database.getInstance();
         db.establishConnection();
         persons = db.getPersons();
         db.closeConnection();
-        this.fill();
-        for (int i = 0; i < persons.size(); i++) {
-            System.out.println(persons.get(i).toString());
-        }
+        this.fillTable();
     }
     
 }

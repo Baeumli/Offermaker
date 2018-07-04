@@ -114,6 +114,7 @@ public class Database {
 
     //Gets data from database
     public ObservableList<Person> getPersons() {
+        
         Person person;
         ObservableList<Person> persons = FXCollections.observableArrayList();
         try {
