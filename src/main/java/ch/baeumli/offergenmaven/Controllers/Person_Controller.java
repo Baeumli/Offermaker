@@ -31,7 +31,7 @@ import javafx.scene.layout.AnchorPane;
 public class Person_Controller implements Initializable {
     
     @FXML private ComboBox cboxSex;
-    private Button btnExit;
+    @FXML private Button btnExit;
     @FXML private TextField txtFirstname;
     @FXML private TextField txtLastname;
     @FXML private TextField txtEmail;
@@ -43,6 +43,9 @@ public class Person_Controller implements Initializable {
     @FXML private TableColumn colFirstname;
     @FXML private TableColumn colLastname;
     @FXML private Button btnCreatePerson;
+    @FXML private TableColumn colEmail;
+    @FXML private TableColumn colPhone;
+    @FXML private TableColumn colCompany;
     
     private String sex;
     private String firstname;
@@ -51,14 +54,7 @@ public class Person_Controller implements Initializable {
     private String phone;
     private String company;
     private ObservableList<Person> persons = FXCollections.observableArrayList();
-    @FXML
-    private TableColumn colEmail;
-    @FXML
-    private TableColumn colPhone;
-    @FXML
-    private TableColumn colCompany;
-
-
+    
     void btnExitClick(ActionEvent event) {
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
@@ -109,5 +105,4 @@ public class Person_Controller implements Initializable {
         db.closeConnection();
         this.fillTable();
     }
-    
 }

@@ -71,8 +71,10 @@ public class Main_Controller implements Initializable {
     @FXML
     public void menuFileClick(ActionEvent event) {
         try {
-            AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarFile_View.fxml")); 
-            toolbarPane.getChildren().add(newLoadedPane);
+            toolbarPane.getChildren().clear();
+            AnchorPane loadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarFile_View.fxml"));
+            toolbarPane.getChildren().add(loadedPane);
+
         } catch (IOException ex) {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }               
@@ -81,8 +83,9 @@ public class Main_Controller implements Initializable {
     @FXML
     public void menuOptionsClick(ActionEvent event) {
         try {
-            AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarOptions_View.fxml")); 
-            toolbarPane.getChildren().add(newLoadedPane);
+            toolbarPane.getChildren().clear();
+            AnchorPane loadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarOptions_View.fxml")); 
+            toolbarPane.getChildren().add(loadedPane);
         } catch (IOException ex) {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }    
@@ -91,8 +94,9 @@ public class Main_Controller implements Initializable {
     @FXML
     public void menuSendClick(ActionEvent event) {
         try {
-            AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarSend_View.fxml"));
-            toolbarPane.getChildren().add(newLoadedPane);
+            toolbarPane.getChildren().clear();
+            AnchorPane loadedPane = FXMLLoader.load(getClass().getResource("/fxml/ToolbarSend_View.fxml"));
+            toolbarPane.getChildren().add(loadedPane);
         } catch (IOException ex) {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -130,9 +134,5 @@ public class Main_Controller implements Initializable {
                 + "Nous allons faire la livraison par camion après la réception de votre paiement."
                 + "\n" + "\n"
                 + "En vous remerciant d'avance de votre commande, nous vous prions d'agréer, Monsieur, nos distinguées.");   
-    }    
-    
-    
-
-    
+    }     
 }
