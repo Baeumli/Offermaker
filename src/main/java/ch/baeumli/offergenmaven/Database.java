@@ -22,11 +22,10 @@ public class Database {
 
     private Connection cn = null;
     private static Database instance = null;
-    private final String USERNAME = "db_user";
-    private final String PASSWORD = "lookatallthesechickens";
-    private final String DB_CONNECTION_STRING = "jdbc:mysql://eggenberg.mynetgear.com/franz_db"
-            //JDBC requires timezone for some weird reason
-            + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private final String USERNAME = "default_user";
+    private final String PASSWORD = "default_pass";
+    private final String DB_CONNECTION_STRING = "jdbc:mysql://baeumli.me/jclerk";
+//            + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     public static Database getInstance() {
         if (instance == null) {
@@ -63,9 +62,9 @@ public class Database {
         try {
             String sql = "INSERT INTO `person` VALUES (NULL, ?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, lastname);
+            ps.setString(1, sex);
             ps.setString(2, firstname);
-            ps.setString(3, sex);
+            ps.setString(3, lastname);
             ps.setString(4, email);
             ps.setString(5, phone);
             ps.setString(6, company);
@@ -123,7 +122,7 @@ public class Database {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                person = new Person(rs.getString("sex"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getString("phone"), rs.getString("company"), rs.getInt("person_id"));
+                person = new Person(rs.getString("sex"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getString("phone"), rs.getString("company"), rs.getInt("id"));
                 persons.add(person);
             }
             return persons;
@@ -143,7 +142,7 @@ public class Database {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                product = new Product(rs.getString("brand"), rs.getString("name"), rs.getDouble("price"), rs.getInt("product_id"));
+                product = new Product(rs.getString("brand"), rs.getString("name"), rs.getDouble("price"), rs.getInt("id"));
                 products.add(product);
             }
             return products;

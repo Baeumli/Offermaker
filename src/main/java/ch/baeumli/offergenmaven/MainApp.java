@@ -18,6 +18,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/stylesheet.css");
         stage.initStyle(StageStyle.DECORATED);
+        stage.setResizable(false);
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();
