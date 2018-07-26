@@ -24,7 +24,7 @@ public class Database {
     private static Database instance = null;
     private final String USERNAME = "default_user";
     private final String PASSWORD = "default_pass";
-    private final String DB_CONNECTION_STRING = "jdbc:mysql://baeumli.me/jclerk";
+    private final String DB_CONNECTION_STRING = "jdbc:mysql://206.189.61.6/jclerk";
 //            + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     public static Database getInstance() {
@@ -74,7 +74,38 @@ public class Database {
             ex.printStackTrace();
         }
     }
+    
+    //Removes data from database
+    public void removePerson(int id) {
+        try {
+            String sql = "DELETE FROM `person` WHERE id = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+        } catch (SQLException ex) {
+            System.out.println("Failed to delete person");
+            ex.printStackTrace();
+        }
+    }
 
+        public void editPerson(String sex, String firstname, String lastname, String email, String phone, String company, int id) {
+        try {
+            String sql = "UPDATE `person` SET sex = ?, firstname = ?, lastname = ?, email = ?, phone = ?, company = ? WHERE id = ?;";
+            
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, sex);
+            ps.setString(2, firstname);
+            ps.setString(3, lastname);
+            ps.setString(4, email);
+            ps.setString(5, phone);
+            ps.setString(6, company);
+            ps.setInt(7, id);
+            ps.execute();
+        } catch (SQLException ex) {
+            System.out.println("Failed to edit person");
+            ex.printStackTrace();
+        }
+    }
     public void addProduct(String brand, String name, double price) {
         try {
             String sql = "INSERT INTO `product` VALUES (NULL, ?, ?, ?, ?);";
@@ -88,18 +119,9 @@ public class Database {
         }
     }
 
-    //Removes data from database
-    public void removePerson(int id) {
-        try {
-            String sql = "DELETE FROM `person` WHERE person_id = ?";
-            PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setInt(1, id);
-        } catch (SQLException ex) {
-            System.out.println("Failed to delete person");
-            ex.printStackTrace();
-        }
-    }
 
+    
+    
     public void removeProduct(int id) {
         try {
             String sql = "DELETE FROM `product` WHERE product_id = ?";
@@ -129,7 +151,6 @@ public class Database {
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-
         }
     }
 
