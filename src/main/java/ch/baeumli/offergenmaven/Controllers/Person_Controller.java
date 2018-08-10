@@ -11,8 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ch.baeumli.offergenmaven.Database;
 import ch.baeumli.offergenmaven.Person;
@@ -24,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,13 +47,8 @@ public class Person_Controller implements Initializable {
     @FXML private TableColumn<Person, String> colCompany;
       
     private ObservableList<Person> persons = FXCollections.observableArrayList();
-    private int selectedPersonId;
+    private Person selectedPerson;
 
-    public int getSelectedPersonId() {
-        return selectedPersonId;
-    }
-    
-    
     void btnExitClick(ActionEvent event) {
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
@@ -71,6 +65,9 @@ public class Person_Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        tblPerson.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        
         // TODO
         colSex.setCellValueFactory(new PropertyValueFactory("sex"));
         colFirstname.setCellValueFactory(new PropertyValueFactory("firstname"));
@@ -78,7 +75,6 @@ public class Person_Controller implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory("email"));
         colPhone.setCellValueFactory(new PropertyValueFactory("phone"));
         colCompany.setCellValueFactory(new PropertyValueFactory("company"));   
-        
         updateTable();
         
     }
@@ -103,22 +99,27 @@ public class Person_Controller implements Initializable {
 
     @FXML
     private void btnEditPersonClicked(ActionEvent event) {
-        
-        if (tblPerson.getSelectionModel().getSelectedItem() != null) {
-            selectedPersonId = tblPerson.getSelectionModel().getSelectedItem().getId();
-        }
-        
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EditPerson_View.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UTILITY);
-            stage.setTitle("Edit Person");
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-            updateTable();
-            
+            if (tblPerson.getSelectionModel().getSelectedItem() != null) {
+                selectedPerson = tblPerson.getSelectionModel().getSelectedItem();
+                
+                System.out.println("name + id = " + selectedPerson.getFirstname() + " " + selectedPerson.getId());
+                
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EditPerson_View.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+                EditPerson_Controller controller = fxmlLoader.getController();
+                controller.fillFields(selectedPerson.getId(), selectedPerson.getSex(), selectedPerson.getFirstname(), selectedPerson.getLastname(), selectedPerson.getEmail(), selectedPerson.getPhone(), selectedPerson.getCompany());
+                
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UTILITY);
+                stage.setTitle("Edit Person");
+                stage.setResizable(false);
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                updateTable();
+            } else {
+                System.out.println("No person selected");
+            }
         } catch (IOException ex) {
             Logger.getLogger(ToolbarFile_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -128,15 +129,23 @@ public class Person_Controller implements Initializable {
     private void btnRemovePersonClicked(ActionEvent event) {
 
         if (tblPerson.getSelectionModel().getSelectedItem() != null) {
+            int selectedPersonId;
             selectedPersonId = tblPerson.getSelectionModel().getSelectedItem().getId();
-        }
+            Database db = Database.getInstance();
+            db.establishConnection();
+            db.removePerson(selectedPersonId);
+            db.closeConnection();
 
-        Database db = Database.getInstance();
-        db.establishConnection();
-        db.removePerson(selectedPersonId);
-        db.closeConnection();
-        
-        updateTable();
+            updateTable();
+        } else {
+            System.out.println("No person selected");
+        }
     }
 
+    public Person getSelectedPerson() {
+        return selectedPerson;
+    }
+
+    
+    
 }

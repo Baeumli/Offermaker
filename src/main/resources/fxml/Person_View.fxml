@@ -89,7 +89,7 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <TableView fx:id="tblPerson" focusTraversable="false" prefHeight="527.0" prefWidth="656.0">
+            <TableView fx:id="tblPerson" editable="true" focusTraversable="false" prefHeight="527.0" prefWidth="656.0">
                 <columnResizePolicy>
                     <!--NetBeans falsely marks this as an error-->
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -6,6 +6,7 @@
 package ch.baeumli.offergenmaven.Controllers;
 
 import ch.baeumli.offergenmaven.Database;
+import ch.baeumli.offergenmaven.Person;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,8 +44,13 @@ public class EditPerson_Controller implements Initializable {
     @FXML private ComboBox<String> cboxSex;
 
     private int id;
-    
-    
+    private String sex;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String phone;
+    private String company;
+
     /**
      * Initializes the controller class.
      *
@@ -53,29 +59,33 @@ public class EditPerson_Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            // TODO
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Person_Controller.fxml"));
-            Parent root = (Parent)loader.load();
-            Person_Controller controller = (Person_Controller)loader.getController();
-            id = controller.getSelectedPersonId();
-        } catch (IOException ex) {
-            Logger.getLogger(EditPerson_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }    
+        cboxSex.getItems().addAll("M", "F");
+        
+    }
 
+    
+    void fillFields(int id, String sex, String firstname, String lastname, String email, String phone, String company) {
+        this.id = id;
+        cboxSex.setValue(sex);
+        txtFirstname.setText(firstname);
+        txtLastname.setText(lastname);
+        txtEmail.setText(email);
+        txtPhone.setText(phone);
+        txtCompany.setText(company);
+    }
+    
 
     @FXML
     void btnSubmitClicked(ActionEvent event) {
         if (cboxSex.getSelectionModel().getSelectedItem().equals("") || txtFirstname.getText().equals("") || txtLastname.getText().equals("")) {
             System.out.println("Empty Fields!");
         } else {
-            String sex = cboxSex.getSelectionModel().getSelectedItem();
-            String firstname = txtFirstname.getText();
-            String lastname = txtLastname.getText();
-            String email = txtEmail.getText();
-            String phone = txtPhone.getText();
-            String company = txtCompany.getText();
+            sex = cboxSex.getSelectionModel().getSelectedItem();
+            firstname = txtFirstname.getText();
+            lastname = txtLastname.getText();
+            email = txtEmail.getText();
+            phone = txtPhone.getText();
+            company = txtCompany.getText();
             
             Database db = Database.getInstance();
             db.establishConnection();
