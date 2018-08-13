@@ -65,10 +65,14 @@ public class Main_Controller implements Initializable {
     String streetUser = "Seminarstrasse 3";
     String cityUser = "Baden";
     String zipUser = "5400";
+    String sex = "";
+    String shippingTiming = "";
     int amount = 0;
     int daysToPay = 0;
     int discount = 0;
     int discountAmount = 0;
+    String paymentMethod = "";
+    String shippingMethod = "";
 
     private final Person tempPerson = new Person("M", "John", "Smith", "j.d@gmail.com", "000-000-124", "Google Inc.", "Road Alley 9", "New York", "73823", 1);
     private final Product tempProduct = new Product("MSI", "GTX 1080", 1, 1);
@@ -111,7 +115,10 @@ public class Main_Controller implements Initializable {
         }
         
         listboxShipping.getItems().addAll("Camion", "Enlèvement");
-        listboxPayment.getItems().addAll("Cash", "Carte Postal", "Carte Credit", "Facture.");
+        listboxPayment.getItems().addAll("Carte Postal", "Facture");
+        listboxShipping.getSelectionModel().selectFirst();
+        listboxPayment.getSelectionModel().selectFirst();
+
         txtDiscount.setDisable(true);
         txtDiscountAmount.setDisable(true);
         selectedPerson = tempPerson;
@@ -155,12 +162,15 @@ public class Main_Controller implements Initializable {
         switch (selectedPerson.getSex()) {
             case "M":
                 salutation = "Cher Monsieur " + selectedPerson.getLastname();
+                sex = "Monsieur";
                 break;
             case "F":
                 salutation = "Chère Madame " + selectedPerson.getLastname();
+                sex = "Madame";
                 break;
             default:
                 salutation = "Chères Dames et Messieurs";
+                sex = "Mesdames, Messieurs";
                 break;
         }
         
@@ -180,11 +190,11 @@ public class Main_Controller implements Initializable {
                 + "<p>Nous avons bien reçu votre commande du 30 mai et nous vous en remercions vivement.</p>"
                 + "<p>Nous vous proposons " + amount + " " + selectedProduct.getBrand() + " " + selectedProduct.getName() + " au prix de " + selectedProduct.getPrice() + " CHF par pièce. "
                 + ""
-                + "<p>Nous vous demandons de faire le paiement dans les " + daysToPay + " jours à notre compte de chèque postal.</p>"
-                + "<p>Nous allons faire la livraison par camion après la réception de votre paiement.</p>"
-                + "<p>En vous remerciant d'avance de votre commande, nous vous prions d'agréer, Monsieur, nos distinguées</p>"
+                + "<p>Nous vous demandons de faire le paiement dans les " + daysToPay + " jours " + paymentMethod + "</p>"
+                + "<p>" + shippingMethod + shippingTiming + "</p>"
+                + "<p>En vous remerciant d'avance de votre commande, nous vous prions d'agréer, " + sex + ", nos distinguées.</p>"
                 + "</div>"
-                + "<p> Cordialement <br/> "
+                + "<p> Cordialement, <br/> "
                 + "<br/>" + firstnameUser + " " + lastnameUser + "</p>"
                 + "</body></html>";
  
@@ -258,10 +268,41 @@ public class Main_Controller implements Initializable {
     private void btnApplyPressed(ActionEvent event) {
                 
         try {
-            amount = Integer.parseInt(txtAmount.getText());
-            discount = Integer.parseInt(txtDiscount.getText());
-            discountAmount = Integer.parseInt(txtDiscountAmount.getText());
-            daysToPay = Integer.parseInt(txtDaysToPay.getText());
+            if (txtAmount.getText() != null || txtDiscount.getText() != null || txtDiscountAmount.getText() != null || txtDaysToPay.getText() != null) {
+                amount = Integer.parseInt(txtAmount.getText());
+                discount = Integer.parseInt(txtDiscount.getText());
+                discountAmount = Integer.parseInt(txtDiscountAmount.getText());
+                daysToPay = Integer.parseInt(txtDaysToPay.getText());
+            } else {
+                System.out.println("Empty Fields!");
+            }
+
+            paymentMethod = listboxPayment.getValue();
+            shippingMethod = listboxShipping.getValue();
+            
+            
+            switch (listboxPayment.getValue()) {
+                    case "Carte Postal":
+                    paymentMethod = "à notre compte de chèque postal.";
+                    break;
+                    case "Facture":
+                    paymentMethod = "sur facture.";
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+     
+            switch (listboxShipping.getValue()) {
+                case "Camion":
+                    shippingMethod = "Nous allons faire la livraison par camion";
+                    break;
+                case "Enlèvement":
+                    shippingMethod = "Vous pouvez récupérer la commande dans notre entrepôt";
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+               
             addDiscount();
             updatePreview();
         } catch (Exception e) {
@@ -291,10 +332,14 @@ public class Main_Controller implements Initializable {
 
     @FXML
     private void radioShippingBeforePressed(ActionEvent event) {
+
+        shippingTiming = " aussi vite que possible.";
     }
 
     @FXML
     private void radioShippingAfterPressed(ActionEvent event) {
+
+        shippingTiming = " après la réception de votre paiement.";
     }
 
 }

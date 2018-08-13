@@ -1,3 +1,31 @@
 .button {
     -fx-font-weight: bold;
 }
+
+.leftPane {
+    -fx-background-image: url("../assets/black-paper.png");
+    -fx-background-color: linear-gradient(#0f0c29 0%, #302b63 100%);
+}
+
+.label {
+    -fx-text-fill: #ffffff;
+}
+
+.radio-button {
+    -fx-text-fill: #ffffff;
+    
+}
+
+.radio-button .radio {
+    -fx-background-color: #ffffff;
+    
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 0px;
+}
+
+.choice-box {
+    -fx-background-color: #ffffff;
+}

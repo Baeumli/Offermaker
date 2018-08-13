@@ -111,9 +111,7 @@ public class Database {
             ex.printStackTrace();
         }
     }
-        
-        
-        
+         
     public void addProduct(String brand, String name, double price) {
         try {
             String sql = "INSERT INTO `product` VALUES (NULL, ?, ?, ?);";
