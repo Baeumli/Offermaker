@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offermaker.controllers.Login_Controller">
+<AnchorPane id="AnchorPane" fx:id="rootPane" onMouseDragged="#rootPaneDragged" onMousePressed="#rootPanePressed" prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offermaker.controllers.Login_Controller">
    <children>
       <PasswordField fx:id="txtPassword" layoutX="147.0" layoutY="229.0" prefHeight="31.0" prefWidth="206.0" promptText="Password:" />
       <TextField fx:id="txtUsername" layoutX="147.0" layoutY="185.0" prefHeight="31.0" prefWidth="206.0" promptText="Username:" />

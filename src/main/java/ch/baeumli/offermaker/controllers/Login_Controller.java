@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -38,52 +39,53 @@ public class Login_Controller implements Initializable {
 
     private static String username;
     private static String password;
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
     @FXML
     private AnchorPane rootPane;
-    
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+
+    }
 
     @FXML
     private void btnSignInPressed(ActionEvent event) {
-       username = txtUsername.getText();
-       password = txtPassword.getText();
-       
-       Database db = Database.getInstance();
+        username = txtUsername.getText();
+        password = txtPassword.getText();
+
+        Database db = Database.getInstance();
         if (db.establishConnection(username, password) != null) {
-           
-                Stage loginStage = (Stage) rootPane.getScene().getWindow();
-                loginStage.close();
+            Stage loginStage = (Stage) rootPane.getScene().getWindow();
+            loginStage.close();
 
             try {
-               Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main_View.fxml"));
-               
-               Scene scene = new Scene(root);
-               scene.getStylesheets().add("/styles/Styles.css");
-               Stage stage = new Stage();
-               stage.setTitle("Offermaker - Welcome!");
-               stage.setScene(scene);
-               stage.show();
-           } catch (IOException ex) {
-               Logger.getLogger(Login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main_View.fxml"));
+
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/styles/Styles.css");
+                Stage stage = new Stage();
+                stage.setTitle("Offermaker - Welcome!");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(Login_Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            
+
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Offermaker");
             alert.setHeaderText("Wrong Username and Password");
             alert.setContentText("Please try again.");
             alert.showAndWait();
         }
-       
-        
-        
+
     }
 
     public static String getUsername() {
@@ -92,6 +94,21 @@ public class Login_Controller implements Initializable {
 
     public static String getPassword() {
         return password;
+    }
+
+    @FXML
+    private void rootPaneDragged(MouseEvent event) {
+        
+        Stage loginStage = (Stage) rootPane.getScene().getWindow();
+        
+        loginStage.setX(event.getScreenX() - xOffset);
+        loginStage.setY(event.getScreenY() - yOffset);
+    }
+
+    @FXML
+    private void rootPanePressed(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
     }
 
     

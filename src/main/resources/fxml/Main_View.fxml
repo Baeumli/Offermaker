@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.web.WebView?>
 
 <AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="875.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offermaker.controllers.Main_Controller">
    <children>
-      <Button fx:id="btnPerson" layoutX="28.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnPersonPressed" prefHeight="120.0" prefWidth="120.0" text="Person" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-      <Button fx:id="btnProduct" layoutX="20.0" layoutY="153.0" mnemonicParsing="false" onAction="#btnProductPressed" prefHeight="120.0" prefWidth="120.0" text="Product" AnchorPane.topAnchor="160.0" />
-      <Button fx:id="btnShipping" layoutX="20.0" layoutY="301.0" mnemonicParsing="false" onAction="#btnShippingPressed" prefHeight="120.0" prefWidth="120.0" text="Shipping" AnchorPane.topAnchor="300.0" />
-      <Button fx:id="btnDate" layoutX="20.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnDatePressed" prefHeight="120.0" prefWidth="120.0" text="Date" AnchorPane.topAnchor="440.0" />
-      <Button fx:id="btnPayment" layoutX="20.0" layoutY="718.0" mnemonicParsing="false" onAction="#btnPaymentPressed" prefHeight="120.0" prefWidth="120.0" text="Payment" AnchorPane.topAnchor="720.0" />
-      <Button fx:id="btnDiscount" layoutX="20.0" layoutY="580.0" mnemonicParsing="false" onAction="#btnDiscountPressed" prefHeight="120.0" prefWidth="120.0" text="Discount" AnchorPane.topAnchor="580.0" />
+      <Button fx:id="btnPerson" layoutX="28.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnPersonPressed" prefHeight="120.0" prefWidth="120.0" text="Personne" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <Button fx:id="btnProduct" layoutX="20.0" layoutY="153.0" mnemonicParsing="false" onAction="#btnProductPressed" prefHeight="120.0" prefWidth="120.0" text="Produit" AnchorPane.topAnchor="160.0" />
       <AnchorPane layoutX="274.0" layoutY="514.0" prefHeight="29.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <GridPane layoutX="-16.0" layoutY="-6.0" prefHeight="20.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="35.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="165.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Database status:" />
+                  <Label text="État:" />
                   <Label fx:id="lblConnection" prefHeight="17.0" prefWidth="157.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
@@ -53,14 +55,14 @@
         </rowConstraints>
          <children>
             <Label fx:id="lblFirstname" prefHeight="20.0" prefWidth="208.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Firstname:" GridPane.rowIndex="1" />
-            <Label text="Lastname:" GridPane.rowIndex="2" />
-            <Label text="E-Mail:" GridPane.rowIndex="3" />
+            <Label text="Prénom:" GridPane.rowIndex="1" />
+            <Label text="Nom de famille:" GridPane.rowIndex="2" />
+            <Label text="Email:" GridPane.rowIndex="3" />
             <Label fx:id="lblEmail" prefHeight="17.0" prefWidth="337.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="lblLastname" prefHeight="17.0" prefWidth="231.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Sex:" />
-            <Label text="Phone:" GridPane.rowIndex="4" />
-            <Label text="Company:" GridPane.rowIndex="5" />
+            <Label text="Sexe:" />
+            <Label text="Téléphone:" GridPane.rowIndex="4" />
+            <Label text="Entreprise:" GridPane.rowIndex="5" />
             <Label fx:id="lblSex" prefHeight="17.0" prefWidth="221.0" GridPane.columnIndex="1" />
             <Label fx:id="lblPhone" prefHeight="17.0" prefWidth="261.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label fx:id="lblCompany" prefHeight="17.0" prefWidth="348.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -82,12 +84,90 @@
          <children>
             <Label fx:id="lblProductName" prefHeight="20.0" prefWidth="208.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Name:" GridPane.rowIndex="1" />
-            <Label text="Price:" GridPane.rowIndex="2" />
+            <Label text="Prix:" GridPane.rowIndex="2" />
             <Label fx:id="lblPrice" prefHeight="17.0" prefWidth="231.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Brand:" />
+            <Label text="Marque:" />
             <Label fx:id="lblBrand" prefHeight="17.0" prefWidth="221.0" GridPane.columnIndex="1" />
+            <Label text="Quantité:" GridPane.rowIndex="3" />
+            <HBox prefHeight="4.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <TextField fx:id="txtAmount" prefHeight="47.0" prefWidth="48.0" />
+               </children>
+            </HBox>
          </children>
       </GridPane>
-      <Button fx:id="btnSavePdf" layoutX="172.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnSavePdfPressed" prefHeight="120.0" prefWidth="120.0" text="Save as PDF" />
+      <Button fx:id="btnSavePdf" layoutX="14.0" layoutY="798.0" mnemonicParsing="false" onAction="#btnSavePdfPressed" prefHeight="37.0" prefWidth="376.0" text="Enregistrer en PDF" />
+      <GridPane layoutX="14.0" layoutY="308.0" prefHeight="103.0" prefWidth="218.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="134.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="1.0" prefWidth="84.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="période:" />
+            <TextField fx:id="txtDaysToPay" prefHeight="25.0" prefWidth="37.0" promptText="jours" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="listboxPayment" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="mode de paiement:" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="14.0" layoutY="429.0" prefHeight="93.0" prefWidth="389.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="115.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="380.0" minWidth="10.0" prefWidth="274.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="livraison:" GridPane.rowIndex="1" />
+            <Label text="début de livraison:" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
+               <children>
+                  <RadioButton fx:id="radioShippingBefore" mnemonicParsing="false" onAction="#radioShippingBeforePressed" selected="true" text="avant paiement">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="radioGroup" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="radioShippingAfter" mnemonicParsing="false" onAction="#radioShippingAfterPressed" text="après paiement" toggleGroup="$radioGroup" />
+               </children>
+            </HBox>
+            <ChoiceBox fx:id="listboxShipping" prefHeight="25.0" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="14.0" layoutY="559.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <CheckBox fx:id="checkboxDiscount" mnemonicParsing="false" onAction="#checkboxDiscountPressed" text="réduction" />
+            <Label text="remise:" GridPane.rowIndex="1" />
+            <Label text="à l'achat de:" GridPane.rowIndex="2" />
+            <TextField fx:id="txtDiscount" prefHeight="25.0" prefWidth="78.0" promptText="\%" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDiscountAmount" prefHeight="25.0" prefWidth="78.0" promptText="CHF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="719.0" layoutY="5.0" prefHeight="30.0" prefWidth="257.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="63.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="194.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Bienvenue," />
+            <Label fx:id="lblGreeting" prefHeight="17.0" prefWidth="176.0" text="User" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <Button layoutX="109.0" layoutY="738.0" mnemonicParsing="false" onAction="#btnApplyPressed" prefHeight="25.0" prefWidth="200.0" text="Apply" />
    </children>
 </AnchorPane>

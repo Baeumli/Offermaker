@@ -6,6 +6,7 @@ import ch.baeumli.offermaker.Product;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,7 +23,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -36,10 +41,6 @@ public class Main_Controller implements Initializable {
     @FXML private WebView webView;
     @FXML private Button btnPerson;
     @FXML private Button btnProduct;
-    @FXML private Button btnShipping;
-    @FXML private Button btnDate;
-    @FXML private Button btnPayment;
-    @FXML private Button btnDiscount;
     @FXML private Button btnSavePdf;
     @FXML private Label lblFirstname;
     @FXML private Label lblEmail;
@@ -57,19 +58,64 @@ public class Main_Controller implements Initializable {
     private String content; 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");  
     LocalDateTime now = LocalDateTime.now();  
-            
+    String[] arr = Login_Controller.getUsername().split("\\.");
+    String firstnameUser = capitalize(arr[0]);
+    String lastnameUser = capitalize(arr[1]);
+    String companyUser = "Kanti Baden";
+    String streetUser = "Seminarstrasse 3";
+    String cityUser = "Baden";
+    String zipUser = "5400";
+    int amount = 0;
+    int daysToPay = 0;
+    int discount = 0;
+    int discountAmount = 0;
+
     private final Person tempPerson = new Person("M", "John", "Smith", "j.d@gmail.com", "000-000-124", "Google Inc.", "Road Alley 9", "New York", "73823", 1);
+    private final Product tempProduct = new Product("MSI", "GTX 1080", 1, 1);
+    
+    @FXML
+    private Label lblGreeting;
+    @FXML
+    private TextField txtAmount;
+    @FXML
+    private TextField txtDaysToPay;
+    @FXML
+    private TextField txtDiscount;
+    @FXML
+    private TextField txtDiscountAmount;
+    @FXML
+    private CheckBox checkboxDiscount;
+    @FXML
+    private ChoiceBox<String> listboxPayment;
+    @FXML
+    private RadioButton radioShippingBefore;
+    @FXML
+    private RadioButton radioShippingAfter;
+    @FXML
+    private ChoiceBox<String> listboxShipping;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         // TODO
         if (Database.getCn() != null) {
+
             lblConnection.setText("Connected");
+            lblConnection.setStyle("-fx-text-fill: green");
+
+            lblGreeting.setText(firstnameUser + " " + lastnameUser);
+
         } else {
             lblConnection.setText("not Connected");
+            lblConnection.setStyle("-fx-text-fill: red");
         }
         
+        listboxShipping.getItems().addAll("Camion", "Enlèvement");
+        listboxPayment.getItems().addAll("Cash", "Carte Postal", "Carte Credit", "Facture.");
+        txtDiscount.setDisable(true);
+        txtDiscountAmount.setDisable(true);
         selectedPerson = tempPerson;
+        selectedProduct = tempProduct;
         updatePreview();
     }    
 
@@ -87,14 +133,16 @@ public class Main_Controller implements Initializable {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.showAndWait();
-            selectedPerson = personController.getSelectedPerson();
-            lblSex.setText(selectedPerson.getSex());
-            lblFirstname.setText(selectedPerson.getFirstname());
-            lblLastname.setText(selectedPerson.getLastname());
-            lblEmail.setText(selectedPerson.getEmail());
-            lblPhone.setText(selectedPerson.getPhone());
-            lblCompany.setText(selectedPerson.getCompany());
-            updatePreview();
+            if (personController.getSelectedPerson() != null) {
+                selectedPerson = personController.getSelectedPerson();
+                lblSex.setText(selectedPerson.getSex());
+                lblFirstname.setText(selectedPerson.getFirstname());
+                lblLastname.setText(selectedPerson.getLastname());
+                lblEmail.setText(selectedPerson.getEmail());
+                lblPhone.setText(selectedPerson.getPhone());
+                lblCompany.setText(selectedPerson.getCompany());
+            }
+                updatePreview();
             
         } catch (IOException ex) {
             Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,46 +150,44 @@ public class Main_Controller implements Initializable {
     }
 
     private void updatePreview() {
-        
+
         String salutation;
         switch (selectedPerson.getSex()) {
             case "M":
-                salutation = "Sehr geehrter Herr " + selectedPerson.getLastname();
+                salutation = "Cher Monsieur " + selectedPerson.getLastname();
                 break;
             case "F":
-                salutation = "Sehr geehrte Frau " + selectedPerson.getLastname();
+                salutation = "Chère Madame " + selectedPerson.getLastname();
                 break;
             default:
-                salutation = "Sehr geehrte Damen und Herren";
+                salutation = "Chères Dames et Messieurs";
                 break;
         }
+        
 
         content = "<!DOCTYPE html><html><head> <meta charset=\"utf-8\"/> "
                 + "<title>Vertretung während Reise – 1. Dezember 2012</title>"
                 + "</head>"
                 + "<body> <header> "
-                + "<address> Firmenname <br/> Strasse / Nr. <br/> PLZ / Ort <br/>"
+                + "<address> " + companyUser + "<br/> " + streetUser + " <br/>" + zipUser + " " + cityUser + "<br/>"
                 + " </address> <br/> "
                 + "<address> " + selectedPerson.getCompany() + "<br/>" + selectedPerson.getFirstname() + " " + selectedPerson.getLastname() + "<br/> " + selectedPerson.getStreet() + "<br/>" + selectedPerson.getZip() + " " + selectedPerson.getCity() + "<br/> "
                 + "</address>"
                 + " </header> "
-                + "<p> Ort, " + dtf.format(now) + "</p>"
-                + "<h1> Betreff </h1>"
+                + "<p>" + cityUser + ", " + dtf.format(now) + "</p>"
+                + "<h1> Offre </h1>"
                 + " <div> <p>" + salutation + ", </p>"
-                + "<p><br/>Monsieur, Nous avons bien reçu votre commande du 30 mai et nous vous en remercions vivement.</p>"
-                + "<p><br/>Nous vous proposons 10 tablettes modèle 0815 au prix de 800 CHF par tablette. "
-                + "De plus, nous vous offre une remise spéciale de 5% pour toute commande supérieure à 5000 CHF. </p>"
-                + "<p>Nous vous demandons de faire le paiement dans les " + "dTP" + " jours à notre compte de chèque postal.</p>"
+                + "<p>Nous avons bien reçu votre commande du 30 mai et nous vous en remercions vivement.</p>"
+                + "<p>Nous vous proposons " + amount + " " + selectedProduct.getBrand() + " " + selectedProduct.getName() + " au prix de " + selectedProduct.getPrice() + " CHF par pièce. "
+                + ""
+                + "<p>Nous vous demandons de faire le paiement dans les " + daysToPay + " jours à notre compte de chèque postal.</p>"
                 + "<p>Nous allons faire la livraison par camion après la réception de votre paiement.</p>"
                 + "<p>En vous remerciant d'avance de votre commande, nous vous prions d'agréer, Monsieur, nos distinguées</p>"
                 + "</div>"
-                + "<p> Freundliche Grüsse <br/> "
-                + "<br/> Name / Position </p>"
+                + "<p> Cordialement <br/> "
+                + "<br/>" + firstnameUser + " " + lastnameUser + "</p>"
                 + "</body></html>";
-  
-        
-        
-        
+ 
         WebEngine engine = webView.getEngine();
         engine.loadContent(content);
     }
@@ -172,40 +218,6 @@ public class Main_Controller implements Initializable {
     }
 
     @FXML
-    private void btnShippingPressed(ActionEvent event) {
-    }
-
-    @FXML
-    private void btnDatePressed(ActionEvent event) {
-        
-    }
-
-    @FXML
-    private void btnPaymentPressed(ActionEvent event) {
-        
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Payment_View.fxml"));
-            rootPane = (AnchorPane) loader.load();
-            Payment_Controller paymentController = loader.getController();
-            Stage stage = new Stage();
-            Scene scene = new Scene(rootPane);
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Payment");
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.showAndWait();
-        } catch (IOException ex) {
-            Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }
-
-    @FXML
-    private void btnDiscountPressed(ActionEvent event) {
-    }
-
-    @FXML
     private void btnSavePdfPressed(ActionEvent event) {
         
         final Document doc = new Document();
@@ -230,4 +242,59 @@ public class Main_Controller implements Initializable {
             }
         }
     }
+
+    private String capitalize(final String line) {
+        try {
+            return Character.toUpperCase(line.charAt(0)) + line.substring(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+    @FXML
+    private void btnApplyPressed(ActionEvent event) {
+                
+        try {
+            amount = Integer.parseInt(txtAmount.getText());
+            discount = Integer.parseInt(txtDiscount.getText());
+            discountAmount = Integer.parseInt(txtDiscountAmount.getText());
+            daysToPay = Integer.parseInt(txtDaysToPay.getText());
+            addDiscount();
+            updatePreview();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String addDiscount() {
+        if (true) {
+            
+        }
+        String discountText = "De plus, nous vous offre une remise spéciale de " + discount + "% pour toute commande supérieure à " + discountAmount + " CHF. </p>";
+        return "";   
+    }
+
+    @FXML
+    private void checkboxDiscountPressed(ActionEvent event) {
+
+        if (checkboxDiscount.isSelected()) {
+            txtDiscount.setDisable(false);
+            txtDiscountAmount.setDisable(false);
+        } else {
+            txtDiscount.setDisable(true);
+            txtDiscountAmount.setDisable(true);
+        }
+    }
+
+    @FXML
+    private void radioShippingBeforePressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void radioShippingAfterPressed(ActionEvent event) {
+    }
+
 }
