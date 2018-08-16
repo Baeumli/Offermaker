@@ -9,9 +9,9 @@
 
 <AnchorPane id="AnchorPane" fx:id="rootPane" onMouseDragged="#rootPaneDragged" onMousePressed="#rootPanePressed" prefHeight="650.0" prefWidth="500.0" styleClass="pane" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offermaker.controllers.Login_Controller">
    <children>
-      <PasswordField fx:id="txtPassword" layoutX="147.0" layoutY="229.0" prefHeight="31.0" prefWidth="206.0" promptText="Password:" />
-      <TextField fx:id="txtUsername" layoutX="147.0" layoutY="185.0" prefHeight="31.0" prefWidth="206.0" promptText="Username:" />
-      <Button layoutX="147.0" layoutY="294.0" mnemonicParsing="false" onAction="#btnSignInPressed" prefHeight="31.0" prefWidth="206.0" styleClass="normal-button" text="SIGN IN">
+      <PasswordField fx:id="txtPassword" layoutX="147.0" layoutY="229.0" prefHeight="31.0" prefWidth="206.0" promptText="Mot de passe" />
+      <TextField fx:id="txtUsername" layoutX="147.0" layoutY="185.0" prefHeight="31.0" prefWidth="206.0" promptText="Nom d'utilisateur" />
+      <Button layoutX="147.0" layoutY="294.0" mnemonicParsing="false" onAction="#btnSignInPressed" prefHeight="31.0" prefWidth="206.0" styleClass="normal-button" text="SE CONNECTER">
          <font>
             <Font size="15.0" />
          </font></Button>

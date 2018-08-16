@@ -8,11 +8,10 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneRoot" minHeight="0.0" minWidth="0.0" prefHeight="466.0" prefWidth="477.0" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offermaker.controllers.EditPerson_Controller">
+<AnchorPane fx:id="paneRoot" minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="477.0" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offermaker.controllers.EditPerson_Controller">
    <children>
-      <GridPane layoutX="25.0" layoutY="43.0" prefHeight="243.0" prefWidth="530.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="43.0">
+      <GridPane layoutX="25.0" layoutY="43.0" prefHeight="243.0" prefWidth="530.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="282.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="428.0" minWidth="10.0" prefWidth="321.0" />
@@ -34,26 +33,21 @@
             <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtPhone" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtCompany" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label text="First name:" GridPane.rowIndex="1" />
+            <Label text="Prénom:" GridPane.rowIndex="1" />
             <ComboBox fx:id="cboxSex" focusTraversable="false" prefHeight="27.0" prefWidth="98.0" GridPane.columnIndex="1" />
-            <Label text="Gender:" />
-            <Label text="Last name:" GridPane.rowIndex="2" />
-            <Label text="Phone:" GridPane.rowIndex="4" />
-            <Label text="Mail:" GridPane.rowIndex="3" />
-            <Label text="Company:" GridPane.rowIndex="5" />
-            <Label text="Street:" GridPane.rowIndex="6" />
-            <Label text="City;" GridPane.rowIndex="7" />
-            <Label text="ZIP:" GridPane.rowIndex="8" />
+            <Label text="Sexe:" />
+            <Label text="Nom de famille:" GridPane.rowIndex="2" />
+            <Label text="Téléphone:" GridPane.rowIndex="4" />
+            <Label text="Email:" GridPane.rowIndex="3" />
+            <Label text="Entreprise:" GridPane.rowIndex="5" />
+            <Label text="Adresse:" GridPane.rowIndex="6" />
+            <Label text="Ville:" GridPane.rowIndex="7" />
+            <Label text="Code postal:" GridPane.rowIndex="8" />
             <TextField fx:id="txtStreet" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="txtCity" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="txtZip" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="284.0" text="Edit Person:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Button layoutX="447.0" layoutY="524.0" mnemonicParsing="false" onAction="#btnSubmitClicked" styleClass="btn-controls" text="OK" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button layoutX="436.0" layoutY="401.0" mnemonicParsing="false" onAction="#btnSubmitClicked" styleClass="btn-controls" text="OK" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="8.0" />
    </children>
 </AnchorPane>
