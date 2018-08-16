@@ -23,7 +23,6 @@ public class Database {
     private static Connection cn = null;
     private static Database instance = null;
     private final String DB_CONNECTION_STRING = "jdbc:mysql://206.189.61.6/jclerk";
-//            + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     public static Database getInstance() {
         if (instance == null) {

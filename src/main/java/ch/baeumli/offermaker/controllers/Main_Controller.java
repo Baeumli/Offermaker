@@ -28,6 +28,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -40,7 +41,6 @@ public class Main_Controller implements Initializable {
     @FXML private AnchorPane rootPane;
     @FXML private WebView webView;
     @FXML private Button btnPerson;
-    @FXML private Button btnProduct;
     @FXML private Button btnSavePdf;
     @FXML private Label lblFirstname;
     @FXML private Label lblEmail;
@@ -97,6 +97,12 @@ public class Main_Controller implements Initializable {
     private RadioButton radioShippingAfter;
     @FXML
     private ChoiceBox<String> listboxShipping;
+    @FXML
+    private Button btnApply;
+    @FXML
+    private ToggleGroup radioGroup;
+    @FXML
+    private Button btnProduct;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
