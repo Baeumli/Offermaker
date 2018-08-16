@@ -15,13 +15,12 @@ import javafx.stage.Stage;
 import ch.baeumli.offermaker.Database;
 import ch.baeumli.offermaker.Person;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -76,13 +75,16 @@ public class Person_Controller implements Initializable {
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Add a new Person");
+            stage.setTitle("Ajouter une nouvelle personne");
             stage.setResizable(false);
             stage.setScene(new Scene(root));
             stage.showAndWait();
             updateTable();
         } catch (IOException ex) {
-            Logger.getLogger(Person_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("C");
+            alert.show();
         }
 
     }
@@ -101,17 +103,23 @@ public class Person_Controller implements Initializable {
                     
                     Stage stage = new Stage();
                     stage.initStyle(StageStyle.DECORATED);
-                    stage.setTitle("Edit Person");
+                    stage.setTitle("Éditer une personne");
                     stage.setResizable(false);
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                     updateTable();
                 } catch (IOException ex) {
-                    Logger.getLogger(Person_Controller.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                System.out.println("No person selected");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setContentText("Une erreur est survenue!");
+                    alert.show();
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez sélectionner une personne!");
+            alert.show();
+        }
 
     }
 
@@ -128,7 +136,10 @@ public class Person_Controller implements Initializable {
 
             updateTable();
         } else {
-            System.out.println("No person selected");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Attention");
+                alert.setContentText("Veuillez sélectionner une personne!");
+                alert.show();
         }
     }
 
@@ -139,11 +150,13 @@ public class Person_Controller implements Initializable {
 
             selectedPerson = tblPerson.getSelectionModel().getSelectedItem();
             
-            
-            Stage stage = (Stage) paneRoot.getScene().getWindow();
+                        Stage stage = (Stage) paneRoot.getScene().getWindow();
             stage.close();
         } else {
-            System.out.println("no selection");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez sélectionner une personne!");
+            alert.show();
         }
     }
 

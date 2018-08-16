@@ -82,7 +82,7 @@
 }
 
 .choice-box .label { 
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff;
 }
 
 .check-box {
@@ -91,7 +91,6 @@
 
 .check-box .mark {
     -fx-background-color: transparent;
-    
 }
 
 .check-box .box {
@@ -101,7 +100,6 @@
 .check-box:selected .mark {
     -fx-background-color: #ffffff;
 }
-
 
 .label-greeting {
     -fx-text-fill: #000000;
@@ -139,4 +137,20 @@
 
 .normal-button:pressed {
     -fx-background-color: linear-gradient(to top right, #00887d, #27de6c);
+}
+
+.date-picker {
+    -fx-background-color: #232931;
+    -fx-background-radius: 5px 0px 0px 5px;
+    -fx-border-radius: 5px 0px 0px 5px;
+    -fx-border-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #232931;
+    -fx-background-radius: 0px 5px 5px 0px;
+    -fx-border-radius: 0px 5px 5px 0px;
+    -fx-border-color: #111111;
+    -fx-text-fill: #ffffff;
 }

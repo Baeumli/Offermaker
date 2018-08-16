@@ -6,25 +6,25 @@ import ch.baeumli.offermaker.Product;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
-import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -57,6 +57,7 @@ public class Main_Controller implements Initializable {
     private Product selectedProduct;
     private String content; 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");  
+    DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd.MM"); 
     LocalDateTime now = LocalDateTime.now();  
     String[] arr = Login_Controller.getUsername().split("\\.");
     String firstnameUser = capitalize(arr[0]);
@@ -73,9 +74,10 @@ public class Main_Controller implements Initializable {
     int discountAmount = 0;
     String paymentMethod = "";
     String shippingMethod = "";
+    String offerDate = "";
 
-    private final Person tempPerson = new Person("M", "John", "Smith", "j.d@gmail.com", "000-000-124", "Google Inc.", "Road Alley 9", "New York", "73823", 1);
-    private final Product tempProduct = new Product("MSI", "GTX 1080", 1, 1);
+    private final Person tempPerson = new Person("_", "______", "______", "______", "______", "______", "______", "______", "______", 1);
+    private final Product tempProduct = new Product("______", "______", 0.0, 1);
     
     @FXML
     private Label lblGreeting;
@@ -103,6 +105,8 @@ public class Main_Controller implements Initializable {
     private ToggleGroup radioGroup;
     @FXML
     private Button btnProduct;
+    @FXML
+    private DatePicker dateOffer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -142,7 +146,7 @@ public class Main_Controller implements Initializable {
             Stage stage = new Stage();
             Scene scene = new Scene(rootPane);
             stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Add a new Person");
+            stage.setTitle("Ajouter un client");
             stage.setResizable(false);
             stage.setScene(scene);
             stage.showAndWait();
@@ -155,11 +159,14 @@ public class Main_Controller implements Initializable {
                 lblPhone.setText(selectedPerson.getPhone());
                 lblCompany.setText(selectedPerson.getCompany());
             }
-                updatePreview();
-            
+            updatePreview();
+
         } catch (IOException ex) {
-            Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Une erreur est survenue!");
+            alert.show();
+        }
     }
 
     private void updatePreview() {
@@ -182,7 +189,7 @@ public class Main_Controller implements Initializable {
         
 
         content = "<!DOCTYPE html><html><head> <meta charset=\"utf-8\"/> "
-                + "<title>Vertretung während Reise – 1. Dezember 2012</title>"
+                + "<title>Offre</title>"
                 + "</head>"
                 + "<body> <header> "
                 + "<address> " + companyUser + "<br/> " + streetUser + " <br/>" + zipUser + " " + cityUser + "<br/>"
@@ -193,9 +200,9 @@ public class Main_Controller implements Initializable {
                 + "<p>" + cityUser + ", " + dtf.format(now) + "</p>"
                 + "<h1> Offre </h1>"
                 + " <div> <p>" + salutation + ", </p>"
-                + "<p>Nous avons bien reçu votre commande du 30 mai et nous vous en remercions vivement.</p>"
+                + "<p>Nous avons bien reçu votre commande du " + offerDate + " et nous vous en remercions vivement.</p>"
                 + "<p>Nous vous proposons " + amount + " " + selectedProduct.getBrand() + " " + selectedProduct.getName() + " au prix de " + selectedProduct.getPrice() + " CHF par pièce. "
-                + ""
+                + "</p>"
                 + "<p>Nous vous demandons de faire le paiement dans les " + daysToPay + " jours " + paymentMethod + "</p>"
                 + "<p>" + shippingMethod + shippingTiming + "</p>"
                 + "<p>En vous remerciant d'avance de votre commande, nous vous prions d'agréer, " + sex + ", nos distinguées.</p>"
@@ -219,7 +226,7 @@ public class Main_Controller implements Initializable {
             Stage stage = new Stage();
             Scene scene = new Scene(rootPane);
             stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Add a new Product");
+            stage.setTitle("ajouter un produit");
             stage.setResizable(false);
             stage.setScene(scene);
             stage.showAndWait();
@@ -229,7 +236,10 @@ public class Main_Controller implements Initializable {
             lblPrice.setText(Double.toString(selectedProduct.getPrice()));
 
         } catch (IOException ex) {
-            Logger.getLogger(Main_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Une erreur est survenue!");
+            alert.show();
         }
     }
 
@@ -239,8 +249,8 @@ public class Main_Controller implements Initializable {
         final Document doc = new Document();
         
         FileChooser fc = new FileChooser();
-        fc.setTitle("Save to...");
-        fc.setInitialFileName("Offer.pdf");
+        fc.setTitle("Enregistrer en PDF");
+        fc.setInitialFileName("Offre.pdf");
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
         File file = fc.showSaveDialog(null);
         if (file != null) {
@@ -254,6 +264,10 @@ public class Main_Controller implements Initializable {
 
                 doc.close();
             } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setContentText("Une erreur est survenue!");
+                alert.show();
                 e.printStackTrace();
             }
         }
@@ -263,7 +277,10 @@ public class Main_Controller implements Initializable {
         try {
             return Character.toUpperCase(line.charAt(0)) + line.substring(1);
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Une erreur est survenue!");
+            alert.show();
         }
         return null;
     }
@@ -280,7 +297,10 @@ public class Main_Controller implements Initializable {
                 discountAmount = Integer.parseInt(txtDiscountAmount.getText());
                 daysToPay = Integer.parseInt(txtDaysToPay.getText());
             } else {
-                System.out.println("Empty Fields!");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Attention");
+                alert.setContentText("Il a des champs vides!");
+                alert.show();
             }
 
             paymentMethod = listboxPayment.getValue();
@@ -310,6 +330,9 @@ public class Main_Controller implements Initializable {
             }
                
             addDiscount();
+            LocalDate date = dateOffer.getValue();
+            String day = date.format(dtf2);
+            offerDate = day;
             updatePreview();
         } catch (Exception e) {
             e.printStackTrace();

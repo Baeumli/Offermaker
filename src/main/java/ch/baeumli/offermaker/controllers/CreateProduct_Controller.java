@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -44,8 +45,11 @@ public class CreateProduct_Controller implements Initializable {
 
     @FXML
     private void btnSubmitPressed(ActionEvent event) {
-          if (txtBrand.getText().equals("") || txtProductName.getText().equals("") || txtPrice.getText().equals("")) {
-            System.out.println("Empty Fields!");
+        if (txtBrand.getText().equals("") || txtProductName.getText().equals("") || txtPrice.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Il a des champs vides!");
+            alert.show();
         } else {
             String brand = txtBrand.getText();
             String productName = txtProductName.getText();

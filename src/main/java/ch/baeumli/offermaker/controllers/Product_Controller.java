@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -73,7 +74,10 @@ public class Product_Controller implements Initializable {
             Stage stage = (Stage) paneRoot.getScene().getWindow();
             stage.close();
         } else {
-            System.out.println("no selection");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez sélectionner un produit!");
+            alert.show();
         }
     }
 
@@ -97,7 +101,7 @@ public class Product_Controller implements Initializable {
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Add a new Product");
+            stage.setTitle("Créer un nouveau produit");
             stage.setResizable(false);
             stage.setScene(new Scene(root));
             stage.showAndWait();
@@ -121,7 +125,7 @@ public class Product_Controller implements Initializable {
                     
                     Stage stage = new Stage();
                     stage.initStyle(StageStyle.DECORATED);
-                    stage.setTitle("Edit Product");
+                    stage.setTitle("Éditer un produit");
                     stage.setResizable(false);
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
@@ -129,9 +133,12 @@ public class Product_Controller implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(Product_Controller.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
-                System.out.println("No Product selected");
-            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez sélectionner un produit!");
+            alert.show();
+        }
 
     }
 
@@ -147,7 +154,10 @@ public class Product_Controller implements Initializable {
 
             updateTable();
         } else {
-            System.out.println("No product selected");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez sélectionner un produit!");
+            alert.show();
         }
     }
 

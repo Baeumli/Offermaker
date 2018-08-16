@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -52,7 +53,10 @@ public class CreatePerson_Controller implements Initializable {
     private void btnSubmitClicked(ActionEvent event) {
 
         if (cboxSex.getSelectionModel().getSelectedItem().equals("") || txtFirstname.getText().equals("") || txtLastname.getText().equals("")) {
-            System.out.println("Empty Fields!");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Il a des champs vides!");
+            alert.show();
         } else {
             String sex = cboxSex.getSelectionModel().getSelectedItem();
             String firstname = txtFirstname.getText();

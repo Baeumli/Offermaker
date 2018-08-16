@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,29 +12,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="paneRoot" prefHeight="639.0" prefWidth="1169.0" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offermaker.controllers.Person_Controller">
+<AnchorPane id="AnchorPane" fx:id="paneRoot" prefHeight="557.0" prefWidth="1169.0" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.baeumli.offermaker.controllers.Person_Controller">
    <children>
-      <VBox prefHeight="563.0" prefWidth="254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="557.0" prefWidth="1169.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="132.0" prefWidth="312.0">
+            <AnchorPane prefHeight="49.0" prefWidth="1170.0">
                <children>
-                  <HBox layoutX="933.0" layoutY="79.0" prefHeight="31.0" prefWidth="85.0" spacing="5.0">
+                  <HBox layoutX="1070.0" layoutY="14.0" prefHeight="31.0" prefWidth="85.0" spacing="5.0">
                      <children>
                         <Button alignment="CENTER" ellipsisString="" focusTraversable="false" mnemonicParsing="false" onAction="#btnPersonDialogClicked" pickOnBounds="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn-edit-table">
                            <font>
                               <Font size="1.0" />
                            </font>
-                           <tooltip>
-                              <Tooltip text="Add">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Tooltip>
-                           </tooltip>
                            <graphic>
                               <ImageView fitHeight="18.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../assets/icon_add.png" />
+                                    <Image url="@../assets/add.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -44,17 +36,10 @@
                            <font>
                               <Font size="1.0" />
                            </font>
-                           <tooltip>
-                              <Tooltip text="Add">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Tooltip>
-                           </tooltip>
                            <graphic>
                               <ImageView fitHeight="18.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../assets/icon_edit.png" />
+                                    <Image url="@../assets/edit.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -63,17 +48,10 @@
                            <font>
                               <Font size="1.0" />
                            </font>
-                           <tooltip>
-                              <Tooltip text="Add">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Tooltip>
-                           </tooltip>
                            <graphic>
                               <ImageView fitHeight="18.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../assets/icon_remove.png" />
+                                    <Image url="@../assets/remove.png" />
                                  </image>
                               </ImageView>
                            </graphic>

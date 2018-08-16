@@ -9,8 +9,6 @@ import ch.baeumli.offermaker.Database;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,18 +69,22 @@ public class Login_Controller implements Initializable {
                 Scene scene = new Scene(root);
                 scene.getStylesheets().add("/styles/Styles.css");
                 Stage stage = new Stage();
-                stage.setTitle("Offermaker - Welcome!");
+                stage.setTitle("Offermaker - Bienvenue!");
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(Login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                Alert alert = new Alert(AlertType.ERROR);
+
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Une erreur est survenue!");
+                alert.showAndWait();
             }
         } else {
 
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Offermaker");
-            alert.setHeaderText("Wrong Username and Password");
-            alert.setContentText("Please try again.");
+            alert.setHeaderText("Nom d'utilisateur ou mot de passe incorrect");
+            alert.setContentText("Réessayer");
             alert.showAndWait();
         }
 
