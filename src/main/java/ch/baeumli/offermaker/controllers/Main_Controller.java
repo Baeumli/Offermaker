@@ -59,58 +59,30 @@ public class Main_Controller implements Initializable {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");  
     DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd.MM"); 
     LocalDateTime now = LocalDateTime.now();  
-    String[] arr = Login_Controller.getUsername().split("\\.");
-    String firstnameUser = capitalize(arr[0]);
-    String lastnameUser = capitalize(arr[1]);
-    String companyUser = "Kanti Baden";
-    String streetUser = "Seminarstrasse 3";
-    String cityUser = "Baden";
-    String zipUser = "5400";
-    String sex = "";
-    String shippingTiming = "";
-    int amount = 0;
-    int daysToPay = 0;
-    int discount = 0;
-    int discountAmount = 0;
-    String paymentMethod = "";
-    String shippingMethod = "";
-    String offerDate = "";
-
+    private String[] arr = Login_Controller.getUsername().split("\\.");
+    private String firstnameUser = capitalize(arr[0]);
+    private String lastnameUser = capitalize(arr[1]);
+    private String companyUser = "Kanti Baden";
+    private String streetUser = "Seminarstrasse 3";
+    private String cityUser = "Baden";
+    private String zipUser = "5400";
+    private int amount, daysToPay, discount, discountAmount = 0;
+    private String discountText, paymentMethod, shippingMethod, offerDate, shippingTiming, sex = "";
     private final Person tempPerson = new Person("_", "______", "______", "______", "______", "______", "______", "______", "______", 1);
     private final Product tempProduct = new Product("______", "______", 0.0, 1);
     
-    @FXML
-    private Label lblGreeting;
-    @FXML
-    private TextField txtAmount;
-    @FXML
-    private TextField txtDaysToPay;
-    @FXML
-    private TextField txtDiscount;
-    @FXML
-    private TextField txtDiscountAmount;
-    @FXML
-    private CheckBox checkboxDiscount;
-    @FXML
-    private ChoiceBox<String> listboxPayment;
-    @FXML
-    private RadioButton radioShippingBefore;
-    @FXML
-    private RadioButton radioShippingAfter;
-    @FXML
-    private ChoiceBox<String> listboxShipping;
-    @FXML
-    private Button btnApply;
-    @FXML
-    private ToggleGroup radioGroup;
-    @FXML
-    private Button btnProduct;
-    @FXML
-    private DatePicker dateOffer;
+    @FXML private Label lblGreeting;
+    @FXML private TextField txtAmount;
+    @FXML private TextField txtDaysToPay;
+    @FXML private TextField txtDiscount;
+    @FXML private TextField txtDiscountAmount;
+    @FXML private CheckBox checkboxDiscount;
+    @FXML private ChoiceBox<String> listboxPayment;
+    @FXML private ChoiceBox<String> listboxShipping;
+    @FXML private DatePicker dateOffer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         // TODO
         if (Database.getCn() != null) {
 
@@ -201,8 +173,8 @@ public class Main_Controller implements Initializable {
                 + "<h1> Offre </h1>"
                 + " <div> <p>" + salutation + ", </p>"
                 + "<p>Nous avons bien reçu votre commande du " + offerDate + " et nous vous en remercions vivement.</p>"
-                + "<p>Nous vous proposons " + amount + " " + selectedProduct.getBrand() + " " + selectedProduct.getName() + " au prix de " + selectedProduct.getPrice() + " CHF par pièce. "
-                + "</p>"
+                + "<p>Nous vous proposons " + amount + " " + selectedProduct.getBrand() + " " + selectedProduct.getName() + " au prix de " + selectedProduct.getPrice() + " CHF par pièce. </p>"
+                + discountText
                 + "<p>Nous vous demandons de faire le paiement dans les " + daysToPay + " jours " + paymentMethod + "</p>"
                 + "<p>" + shippingMethod + shippingTiming + "</p>"
                 + "<p>En vous remerciant d'avance de votre commande, nous vous prions d'agréer, " + sex + ", nos distinguées.</p>"
@@ -305,8 +277,7 @@ public class Main_Controller implements Initializable {
 
             paymentMethod = listboxPayment.getValue();
             shippingMethod = listboxShipping.getValue();
-            
-            
+                
             switch (listboxPayment.getValue()) {
                     case "Carte Postal":
                     paymentMethod = "à notre compte de chèque postal.";
@@ -339,12 +310,12 @@ public class Main_Controller implements Initializable {
         }
     }
 
-    private String addDiscount() {
-        if (true) {
-            
+    private void addDiscount() {
+        if (checkboxDiscount.isSelected()) {
+            discountText  = "<p>De plus, nous vous offre une remise spéciale de " + discount + "% pour toute commande supérieure à " + discountAmount + " CHF. </p>";
+        } else {
+            discountText = "";
         }
-        String discountText = "De plus, nous vous offre une remise spéciale de " + discount + "% pour toute commande supérieure à " + discountAmount + " CHF. </p>";
-        return "";   
     }
 
     @FXML
